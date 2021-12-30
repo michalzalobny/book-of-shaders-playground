@@ -34,6 +34,14 @@ export const Layout = (props: Props) => {
           <span className={clsx(styles.codeText)}>GitHub Repo</span>
         </LinkHandler>
       </div>
+
+      {router.pathname !== '/' && (
+        <div className={styles.backWrapper}>
+          <LinkHandler elHref="/">
+            <span className={clsx(styles.codeText)}>Back</span>
+          </LinkHandler>
+        </div>
+      )}
     </>
   );
 };
