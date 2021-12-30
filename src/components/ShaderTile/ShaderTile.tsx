@@ -18,6 +18,9 @@ export const ShaderTile = (props: Props) => {
     <>
       <LinkHandler elHref={elHref}>
         <div className={styles.wrapper}>
+          <div className={styles.numberWrapper}>
+            <span className={styles.number}>{number}</span>
+          </div>
           <div data-card="1" className={styles.imageWrapper}>
             <PreloadImage imageSrc={imageSrc} alt={number} />
           </div>
