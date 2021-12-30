@@ -2,16 +2,18 @@ import React from 'react';
 import clsx from 'clsx';
 
 import { LinkHandler } from 'components/LinkHandler/LinkHandler';
+import { useRouter } from 'next/router';
 
 import styles from './Layout.module.scss';
 
 interface Props {
-  children: React.ReactNode;
   isReady: boolean;
 }
 
 export const Layout = (props: Props) => {
-  const { isReady, children } = props;
+  const { isReady } = props;
+
+  const router = useRouter();
 
   return (
     <>
@@ -23,7 +25,12 @@ export const Layout = (props: Props) => {
           <span className={clsx(styles.contactText, styles.contactTextBold)}>Michal Zalobny</span>
         </LinkHandler>
       </div>
-      {children}
+
+      <div className={styles.codeWrapper}>
+        <LinkHandler isExternal elHref="https://www.linkedin.com/in/michal-zalobny-1a8257204/">
+          <span className={clsx(styles.codeText)}>GitHub Repo</span>
+        </LinkHandler>
+      </div>
     </>
   );
 };

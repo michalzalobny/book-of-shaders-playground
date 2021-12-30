@@ -47,22 +47,22 @@ export default function IndexPage() {
           </div>
         </header>
         <div className={styles.tilesWrapper}>
-          <ShaderTile elHref="/1" imageSrc={img1.src} number="1" />
-          <ShaderTile elHref="/1" imageSrc={img2.src} number="2" />
-          <ShaderTile elHref="/1" imageSrc={img3.src} number="3" />
-          <ShaderTile elHref="/1" imageSrc={img2.src} number="4" />
-          <ShaderTile elHref="/1" imageSrc={img1.src} number="5" />
-          <ShaderTile elHref="/1" imageSrc={img3.src} number="6" />
-          <ShaderTile elHref="/1" imageSrc={img1.src} number="7" />
-          <ShaderTile elHref="/1" imageSrc={img2.src} number="8" />
-          <ShaderTile elHref="/1" imageSrc={img2.src} number="9" />
-          <ShaderTile elHref="/1" imageSrc={img1.src} number="10" />
-          <ShaderTile elHref="/1" imageSrc={img3.src} number="11" />
-          <ShaderTile elHref="/1" imageSrc={img1.src} number="12" />
-          <ShaderTile elHref="/1" imageSrc={img3.src} number="9" />
-          <ShaderTile elHref="/1" imageSrc={img3.src} number="10" />
-          <ShaderTile elHref="/1" imageSrc={img1.src} number="11" />
-          <ShaderTile elHref="/1" imageSrc={img2.src} number="12" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img1.src} number="1" />
+          <ShaderTile elHref="/shaders/2" imageSrc={img2.src} number="2" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img3.src} number="3" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img2.src} number="4" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img1.src} number="5" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img3.src} number="6" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img1.src} number="7" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img2.src} number="8" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img2.src} number="9" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img1.src} number="10" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img3.src} number="11" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img1.src} number="12" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img3.src} number="9" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img3.src} number="10" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img1.src} number="11" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img2.src} number="12" />
         </div>
       </div>
     </>
