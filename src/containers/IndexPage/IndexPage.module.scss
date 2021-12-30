@@ -90,3 +90,14 @@
     color: var(--black);
   }
 }
+
+.tilesWrapper {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;
+
+  @media screen and (min-width: 767px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

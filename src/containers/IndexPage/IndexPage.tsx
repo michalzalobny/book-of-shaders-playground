@@ -3,9 +3,11 @@ import clsx from 'clsx';
 
 import { Head } from 'seo/Head/Head';
 import { LinkHandler } from 'components/LinkHandler/LinkHandler';
+import { ShaderTile } from 'components/ShaderTile/ShaderTile';
 
 import styles from './IndexPage.module.scss';
 import sharedStyles from 'utils/sharedStyles.module.scss';
+import img1 from 'assets/tileImages/1.jpg';
 
 export default function IndexPage() {
   return (
@@ -42,6 +44,9 @@ export default function IndexPage() {
             </LinkHandler>
           </div>
         </header>
+        <div className={styles.tilesWrapper}>
+          <ShaderTile elHref="/1" imageSrc={img1.src} number="1" />
+        </div>
       </div>
     </>
   );
