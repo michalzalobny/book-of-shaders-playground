@@ -1,1 +1,1 @@
-export { default } from 'containers/Shaders/1/Page';
+export { default } from 'containers/Shaders/1';
