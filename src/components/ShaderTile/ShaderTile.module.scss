@@ -15,6 +15,7 @@
 
   [data-card='2'] {
     transform: translate(-50%, -50%) rotateX(180deg) rotateY(180deg) scale(1);
+    z-index: 2;
   }
 
   &:hover {
@@ -36,17 +37,18 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg) scale(1);
   width: 80%;
   height: 80%;
   transition: transform 1.1s;
   transition-timing-function: cubic-bezier(0.64, 0.02, 0.16, 0.97) t;
   backface-visibility: hidden;
+  z-index: 1;
 }
 
 .numberWrapper {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   top: 4%;
   left: 4%;
   width: 20%;
