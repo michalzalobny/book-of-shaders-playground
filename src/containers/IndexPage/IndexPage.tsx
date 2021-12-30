@@ -30,6 +30,17 @@ export default function IndexPage() {
               </LinkHandler>
             </div>
           </div>
+          <div className={styles.contactWrapper}>
+            <LinkHandler isExternal elHref="https://www.linkedin.com/in/michal-zalobny-1a8257204/">
+              <span className={styles.contactText}>Michal Zalobny</span>
+            </LinkHandler>
+            <span className={styles.spacer} />
+            <LinkHandler isExternal elHref="https://github.com/javusScriptus">
+              <span className={clsx(styles.contactText, styles.contactTextBold)}>
+                javusScriptus
+              </span>
+            </LinkHandler>
+          </div>
         </header>
       </div>
     </>

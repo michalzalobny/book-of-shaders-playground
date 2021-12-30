@@ -14,12 +14,7 @@ export const LinkHandler = (props: Props) => {
   return (
     <>
       {isExternal ? (
-        <a
-          style={{ width: '100%', display: 'flex' }}
-          href={elHref}
-          rel="noreferrer"
-          target="_blank"
-        >
+        <a style={{ display: 'flex' }} href={elHref} rel="noreferrer" target="_blank">
           {children}
         </a>
       ) : onClickFn ? (
