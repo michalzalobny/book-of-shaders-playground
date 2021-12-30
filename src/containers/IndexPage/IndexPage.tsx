@@ -12,17 +12,25 @@ export default function IndexPage() {
     <>
       <Head />
       <div className={styles.wrapper}>
-        <LinkHandler isExternal elHref="https://thebookofshaders.com/">
-          <span
-            className={clsx(
-              sharedStyles.blobBtn,
-              sharedStyles.blobBtnSmall,
-              sharedStyles.blobNoShadow
-            )}
-          >
-            Test
-          </span>
-        </LinkHandler>
+        <header className={styles.header}>
+          <div className={styles.titleWrapper}>
+            <h1 className={styles.title}>Shaders Playground</h1>
+            <div className={styles.bookInfoWrapper}>
+              <p className={styles.text}>based on</p>
+              <LinkHandler isExternal elHref="https://thebookofshaders.com/">
+                <span
+                  className={clsx(
+                    sharedStyles.blobBtn,
+                    sharedStyles.blobBtnSmall,
+                    sharedStyles.blobBtnNoShadow
+                  )}
+                >
+                  The Book Of Shaders
+                </span>
+              </LinkHandler>
+            </div>
+          </div>
+        </header>
       </div>
     </>
   );

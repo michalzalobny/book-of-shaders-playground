@@ -1,3 +1,5 @@
+//breakpoints : 767px, 1024px, 1920px
+
 .blobBtn {
   background-color: var(--black);
   color: var(--white);
@@ -14,7 +16,7 @@
 
   &Small {
     font-size: 11px;
-    padding: 8px 22px;
+    padding: 6px 18px;
   }
 
   &NoShadow {

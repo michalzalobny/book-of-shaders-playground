@@ -1,5 +1,48 @@
 .wrapper {
-  width: 140rem;
-  height: 10rem;
-  background-color: red;
+  width: 75%;
+  margin: 0 auto;
+
+  @media screen and (min-width: 767px) {
+    width: 100rem;
+  }
+}
+
+.title {
+  font-weight: 800;
+  font-size: 3.5rem;
+  color: var(--black);
+  margin-right: 30px;
+}
+
+.text {
+  font-size: 13px;
+  color: var(--black);
+  white-space: nowrap;
+  margin-right: 20px;
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.bookInfoWrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 2.5rem;
+
+  @media screen and (min-width: 767px) {
+    margin-top: 0;
+  }
+}
+
+.header {
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 767px) {
+    margin-top: 15rem;
+  }
 }
