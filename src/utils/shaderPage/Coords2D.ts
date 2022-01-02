@@ -135,5 +135,9 @@ export class Coords2D {
   destroy() {
     this._removeListeners();
     this._clear();
+
+    if (this._canvas.parentNode) {
+      this._canvas.parentNode.removeChild(this._canvas);
+    }
   }
 }
