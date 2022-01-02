@@ -20,7 +20,7 @@ export const Head = (props: HeadProps) => {
       <meta name="description" content={description} />
       <link
         rel="icon"
-        href="https://res.cloudinary.com/dpv0ukspz/image/upload/v1641141681/favicon_zxviun.ico"
+        href="https://res.cloudinary.com/dpv0ukspz/image/upload/v1641159159/favicon_d5z5um.ico"
       />
 
       <meta property="og:type" content="website" />
