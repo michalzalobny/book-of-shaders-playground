@@ -5,15 +5,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 1;
-  transition: opacity 0.5s;
-  transition-delay: 0.2s;
   background-color: var(--white);
 
   &Ready {
-    opacity: 0;
-    pointer-events: none;
-    user-select: none;
+    display: none;
   }
 }
 
