@@ -17,6 +17,7 @@
 }
 
 .numberWrapper {
+  mix-blend-mode: difference;
   position: fixed;
   z-index: 5;
   bottom: 20px;
