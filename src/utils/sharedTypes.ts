@@ -7,3 +7,8 @@ export interface ShaderPageProps {
   fragmentShader: string;
   vertexShader: string;
 }
+
+export interface Bounds {
+  width: number;
+  height: number;
+}

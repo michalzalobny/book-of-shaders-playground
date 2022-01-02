@@ -74,6 +74,18 @@ svg {
   vertical-align: center;
 }
 
+.coords-2d {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  user-select: none;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
 //Creative
 
 // body {

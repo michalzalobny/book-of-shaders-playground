@@ -4,6 +4,7 @@ import debounce from 'lodash/debounce';
 import { OrbitControls } from 'three-stdlib';
 
 import { MouseMove } from 'utils/shaderPage/MouseMove';
+import { Coords2D } from 'utils/shaderPage/Coords2D';
 import { RendererBounds } from 'utils/sharedTypes';
 
 interface Constructor {
@@ -33,6 +34,7 @@ export class Experience extends THREE.EventDispatcher {
   _mouse = { x: 1, y: 1 };
   _vertexShader: string;
   _fragmentShader: string;
+  _coords2D = new Coords2D();
 
   constructor({ fragmentShader, vertexShader, rendererEl }: Constructor) {
     super();
@@ -78,6 +80,7 @@ export class Experience extends THREE.EventDispatcher {
     this._camera.updateProjectionMatrix();
 
     this._updatePlaneScale();
+    this._coords2D.setRendererBounds(this._rendererBounds);
   }
 
   _handleMouseMove = (e: THREE.Event) => {
@@ -138,6 +141,7 @@ export class Experience extends THREE.EventDispatcher {
 
     if (this._mesh) this._mesh.material.uniforms.uTime.value = time * 0.001;
     this._mouseMove.update();
+    this._coords2D.update();
 
     this._renderer.render(this._scene, this._camera);
   };
@@ -203,6 +207,8 @@ export class Experience extends THREE.EventDispatcher {
     this._geometry?.dispose();
     this._material?.dispose();
     if (this._mesh) this._scene.remove(this._mesh);
+
+    this._coords2D.destroy();
 
     this._stopAppFrame();
     this._removeListeners();
