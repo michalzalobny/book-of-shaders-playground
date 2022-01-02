@@ -34,10 +34,17 @@
   left: 50%;
   transform: translate(-50%, -55%);
   display: flex;
+  overflow: hidden;
 }
 
 .number {
   color: var(--white);
   font-weight: 800;
   font-size: 20px;
+  transform: translateY(100%);
+  transition: transform 0.8s cubic-bezier(0.64, 0.02, 0.16, 0.97);
+
+  &Ready {
+    transform: translateY(0%);
+  }
 }

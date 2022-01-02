@@ -64,7 +64,9 @@ export default function Page(props: ShaderPageProps) {
 
       <div className={styles.numberWrapper}>
         <div className={styles.numberContainer}>
-          <div className={styles.number}>{shaderNumber}</div>
+          <div className={clsx(styles.number, shaderNumber !== '' && styles.numberReady)}>
+            {shaderNumber}
+          </div>
         </div>
       </div>
     </>
