@@ -3,11 +3,13 @@ import * as THREE from 'three';
 import debounce from 'lodash/debounce';
 import { OrbitControls } from 'three-stdlib';
 
-import fragmentShader from './fragment.glsl';
-import vertexShader from './vertex.glsl';
+import { MouseMove } from 'utils/Singletons/MouseMove';
+import { RendererBounds } from 'utils/sharedTypes';
 
 interface Constructor {
   rendererEl: HTMLDivElement;
+  fragmentShader: string;
+  vertexShader: string;
 }
 
 export class Experience extends THREE.EventDispatcher {
@@ -26,13 +28,21 @@ export class Experience extends THREE.EventDispatcher {
   _geometry: THREE.PlaneGeometry | null = null;
   _material: THREE.ShaderMaterial | null = null;
   _mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial> | null = null;
+  _rendererBounds: RendererBounds = { width: 1, height: 1 };
+  _mouseMove = MouseMove.getInstance();
+  _mouse = { x: 1, y: 1 };
+  _vertexShader: string;
+  _fragmentShader: string;
 
-  constructor({ rendererEl }: Constructor) {
+  constructor({ fragmentShader, vertexShader, rendererEl }: Constructor) {
     super();
     this._rendererEl = rendererEl;
     this._canvas = document.createElement('canvas');
     this._rendererEl.appendChild(this._canvas);
     this._camera = new THREE.PerspectiveCamera();
+
+    this._vertexShader = vertexShader;
+    this._fragmentShader = fragmentShader;
 
     this._renderer = new THREE.WebGLRenderer({
       canvas: this._canvas,
@@ -41,36 +51,43 @@ export class Experience extends THREE.EventDispatcher {
     });
 
     this._renderer.outputEncoding = THREE.sRGBEncoding;
-
+    this._addPlane();
     this._onResize();
     this._addListeners();
     this._resumeAppFrame();
 
     this._controls = new OrbitControls(this._camera, this._rendererEl);
     this._controls.update();
-
-    this._addPlane();
   }
 
   _onResizeDebounced = debounce(() => this._onResize(), 300);
 
   _onResize() {
-    const rendererBounds = this._rendererEl.getBoundingClientRect();
-    const aspectRatio = rendererBounds.width / rendererBounds.height;
+    const boundingRect = this._rendererEl.getBoundingClientRect();
+    this._rendererBounds = { width: boundingRect.width, height: boundingRect.height };
+    const aspectRatio = this._rendererBounds.width / this._rendererBounds.height;
     this._camera.aspect = aspectRatio;
 
-    this._camera.position.z = 4;
+    //Set to match pixel size of the elements in three with pixel size of DOM elements
+    this._camera.position.z = 500;
+    this._camera.fov =
+      2 * Math.atan(this._rendererBounds.height / 2 / this._camera.position.z) * (180 / Math.PI);
 
-    this._renderer.setSize(rendererBounds.width, rendererBounds.height);
+    this._renderer.setSize(this._rendererBounds.width, this._rendererBounds.height);
     this._renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this._camera.updateProjectionMatrix();
 
-    if (this._mesh)
-      this._mesh.material.uniforms.uViewportSizes.value = [
-        rendererBounds.width,
-        rendererBounds.height,
-      ];
+    this._updatePlaneScale();
   }
+
+  _handleMouseMove = (e: THREE.Event) => {
+    const { mouse } = e.target as MouseMove;
+
+    this._mouse.x = mouse.x;
+    this._mouse.y = mouse.y;
+
+    if (this._mesh) this._mesh.material.uniforms.uMouse.value = [this._mouse.x, this._mouse.y];
+  };
 
   _onVisibilityChange = () => {
     if (document.hidden) {
@@ -83,11 +100,13 @@ export class Experience extends THREE.EventDispatcher {
   _addListeners() {
     window.addEventListener('resize', this._onResizeDebounced);
     window.addEventListener('visibilitychange', this._onVisibilityChange);
+    this._mouseMove.addEventListener('mousemove', this._handleMouseMove);
   }
 
   _removeListeners() {
     window.removeEventListener('resize', this._onResizeDebounced);
     window.removeEventListener('visibilitychange', this._onVisibilityChange);
+    this._mouseMove.removeEventListener('mousemove', this._handleMouseMove);
   }
 
   _resumeAppFrame() {
@@ -118,6 +137,7 @@ export class Experience extends THREE.EventDispatcher {
     this._lastFrameTime = time;
 
     if (this._mesh) this._mesh.material.uniforms.uTime.value = time * 0.001;
+    this._mouseMove.update();
 
     this._renderer.render(this._scene, this._camera);
   };
@@ -131,15 +151,21 @@ export class Experience extends THREE.EventDispatcher {
   _addPlane() {
     this._material = new THREE.ShaderMaterial({
       side: THREE.DoubleSide,
-      vertexShader,
-      fragmentShader,
+      vertexShader: this._vertexShader,
+      fragmentShader: this._fragmentShader,
       depthWrite: false,
       depthTest: false,
       uniforms: {
         uTime: { value: 0 },
         uRandom: { value: Math.random() },
-        uViewportSizes: {
-          value: [0, 0],
+        uCanvasRes: {
+          value: [0, 0], //Canvas size in pixels
+        },
+        uPlaneRes: {
+          value: [0, 0], //Plane size in pixels
+        },
+        uMouse: {
+          value: [0, 0], //Mouse coords from [0,0] (top left corner) to [screenWidth , screenHeight]
         },
       },
     });
@@ -147,6 +173,26 @@ export class Experience extends THREE.EventDispatcher {
     this._geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
     this._mesh = new THREE.Mesh(this._geometry, this._material);
     this._scene.add(this._mesh);
+  }
+
+  _updatePlaneScale() {
+    if (this._mesh) {
+      //Adjust plane size to the device
+      if (this._rendererBounds.width >= 768) {
+        this._mesh.scale.x = 400;
+        this._mesh.scale.y = 400;
+      } else {
+        this._mesh.scale.x = 250;
+        this._mesh.scale.y = 250;
+      }
+
+      this._mesh.material.uniforms.uCanvasRes.value = [
+        this._rendererBounds.width,
+        this._rendererBounds.height,
+      ];
+
+      this._mesh.material.uniforms.uPlaneRes.value = [this._mesh.scale.x, this._mesh.scale.y];
+    }
   }
 
   destroy() {

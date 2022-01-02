@@ -1,18 +1,25 @@
 import React from 'react';
 
 import { Head } from 'seo/Head/Head';
-import { Experience } from './Experience';
+import { ShaderPageProps } from 'utils/sharedTypes';
 
-export default function Page() {
+import { Experience } from 'utils/shaderPage/Experience';
+
+export default function Page(props: ShaderPageProps) {
+  const { fragmentShader, vertexShader } = props;
   const rendererEl = React.useRef(null);
 
   React.useEffect(() => {
     if (!rendererEl.current) return;
-    const experience = new Experience({ rendererEl: rendererEl.current });
+    const experience = new Experience({
+      rendererEl: rendererEl.current,
+      fragmentShader,
+      vertexShader,
+    });
     return () => {
       experience.destroy();
     };
-  }, []);
+  }, [fragmentShader, vertexShader]);
 
   return (
     <>

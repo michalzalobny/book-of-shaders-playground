@@ -17,6 +17,6 @@ float getStartYValue(){
 
 void main()
 {
-    vec2 st = gl_FragCoord.xy;
+    vec2 st = uMouse.xy; 
     gl_FragColor = vec4((st.x - getStartXValue()) / uPlaneRes.x , (st.y - getStartYValue()) / uPlaneRes.y, 0.0, 1.0);
 }
