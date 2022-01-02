@@ -111,7 +111,11 @@ export class Coords2D {
 
     this._ctx.fillStyle = `rgba(255,255,255, ${this._showProgress})`;
     this._ctx.font = '14px opensans';
-    this._ctx.fillText(`x: ${this._mouse.x}, y: ${this._mouse.y}`, this._mouse.x, this._mouse.y);
+    this._ctx.fillText(
+      `x: ${Math.round(this._mouse.x)}, y: ${Math.round(this._mouse.y)}`,
+      this._mouse.x,
+      this._mouse.y
+    );
   }
 
   _clear() {
