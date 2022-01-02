@@ -4,12 +4,12 @@ import clsx from 'clsx';
 import { Head } from 'seo/Head/Head';
 import { LinkHandler } from 'components/LinkHandler/LinkHandler';
 import { ShaderTile } from 'components/ShaderTile/ShaderTile';
-
-import styles from './IndexPage.module.scss';
 import sharedStyles from 'utils/sharedStyles.module.scss';
 import img1 from 'assets/tileImages/1.jpg';
 import img2 from 'assets/tileImages/2.jpg';
 import img3 from 'assets/tileImages/3.jpg';
+
+import styles from './IndexPage.module.scss';
 
 export default function IndexPage() {
   return (
@@ -36,11 +36,19 @@ export default function IndexPage() {
           </div>
           <div className={styles.contactWrapper}>
             <LinkHandler isExternal elHref="https://www.linkedin.com/in/michal-zalobny-1a8257204/">
-              <span className={styles.contactText}>Michal Zalobny</span>
+              <span className={clsx(sharedStyles.underlineText, sharedStyles.underlineTextBlack)}>
+                Michal Zalobny
+              </span>
             </LinkHandler>
             <span className={styles.spacer} />
             <LinkHandler isExternal elHref="https://github.com/javusScriptus">
-              <span className={clsx(styles.contactText, styles.contactTextBold)}>
+              <span
+                className={clsx(
+                  sharedStyles.underlineText,
+                  sharedStyles.underlineTextBold,
+                  sharedStyles.underlineTextBlack
+                )}
+              >
                 javusScriptus
               </span>
             </LinkHandler>

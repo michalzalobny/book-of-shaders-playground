@@ -5,6 +5,7 @@ import { LinkHandler } from 'components/LinkHandler/LinkHandler';
 import { useRouter } from 'next/router';
 
 import styles from './Layout.module.scss';
+import sharedStyles from 'utils/sharedStyles.module.scss';
 
 interface Props {
   isReady: boolean;
@@ -19,10 +20,12 @@ export const Layout = (props: Props) => {
     <>
       <div className={clsx(styles.readyWrapper, isReady && styles.readyWrapperReady)}></div>
       <div className={styles.authorWrapper}>
-        <span className={styles.contactText}>Shaders Playground by</span>
+        <span className={sharedStyles.underlineText}>Shaders Playground by</span>
         <span className={styles.contactSpacer} />
         <LinkHandler isExternal elHref="https://www.linkedin.com/in/michal-zalobny-1a8257204/">
-          <span className={clsx(styles.contactText, styles.contactTextBold)}>Michal Zalobny</span>
+          <span className={clsx(sharedStyles.underlineText, sharedStyles.underlineTextBold)}>
+            Michal Zalobny
+          </span>
         </LinkHandler>
       </div>
 
@@ -32,7 +35,7 @@ export const Layout = (props: Props) => {
             isExternal
             elHref="https://github.com/javusScriptus/book-of-shaders-playground/tree/main/src/containers/Shaders"
           >
-            <span className={styles.codeText}>GitHub Repo</span>
+            <span className={sharedStyles.underlineText}>GitHub Repo</span>
           </LinkHandler>
         </div>
       )}

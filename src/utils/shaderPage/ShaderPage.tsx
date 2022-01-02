@@ -5,6 +5,7 @@ import { LinkHandler } from 'components/LinkHandler/LinkHandler';
 import { Head } from 'seo/Head/Head';
 import { ShaderPageProps } from 'utils/sharedTypes';
 import { Experience } from 'utils/shaderPage/Experience';
+import sharedStyles from 'utils/sharedStyles.module.scss';
 
 import styles from './ShaderPage.module.scss';
 
@@ -45,7 +46,7 @@ export default function Page(props: ShaderPageProps) {
 
       <div className={styles.backWrapper}>
         <LinkHandler elHref="/">
-          <span className={styles.codeText}>Back</span>
+          <span className={sharedStyles.underlineText}>Back</span>
         </LinkHandler>
       </div>
 
@@ -54,7 +55,7 @@ export default function Page(props: ShaderPageProps) {
           isExternal
           elHref={`https://github.com/javusScriptus/book-of-shaders-playground/tree/main/src/containers/Shaders/${shaderNumber}`}
         >
-          <span className={styles.codeText}>Shader Code on GitHub</span>
+          <span className={sharedStyles.underlineText}>Shader Code on GitHub</span>
         </LinkHandler>
       </div>
     </>
