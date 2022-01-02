@@ -35,6 +35,7 @@ export class Experience extends THREE.EventDispatcher {
   _vertexShader: string;
   _fragmentShader: string;
   _coords2D = new Coords2D();
+  _dpr = 1;
 
   constructor({ fragmentShader, vertexShader, rendererEl }: Constructor) {
     super();
@@ -69,6 +70,8 @@ export class Experience extends THREE.EventDispatcher {
     this._rendererBounds = { width: boundingRect.width, height: boundingRect.height };
     const aspectRatio = this._rendererBounds.width / this._rendererBounds.height;
     this._camera.aspect = aspectRatio;
+    //Update device pixel ratio
+    this._dpr = Math.min(window.devicePixelRatio, 2);
 
     //Set to match pixel size of the elements in three with pixel size of DOM elements
     this._camera.position.z = 500;
@@ -76,7 +79,7 @@ export class Experience extends THREE.EventDispatcher {
       2 * Math.atan(this._rendererBounds.height / 2 / this._camera.position.z) * (180 / Math.PI);
 
     this._renderer.setSize(this._rendererBounds.width, this._rendererBounds.height);
-    this._renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this._renderer.setPixelRatio(this._dpr);
     this._camera.updateProjectionMatrix();
 
     this._updatePlaneScale();
@@ -171,6 +174,7 @@ export class Experience extends THREE.EventDispatcher {
         uMouse: {
           value: [0, 0], //Mouse coords from [0,0] (top left corner) to [screenWidth , screenHeight]
         },
+        uPixelRatio: { value: this._dpr },
       },
     });
 
@@ -183,8 +187,8 @@ export class Experience extends THREE.EventDispatcher {
     if (this._mesh) {
       //Adjust plane size to the device
       if (this._rendererBounds.width >= 768) {
-        this._mesh.scale.x = 400;
-        this._mesh.scale.y = 400;
+        this._mesh.scale.x = 500;
+        this._mesh.scale.y = 500;
       } else {
         this._mesh.scale.x = 250;
         this._mesh.scale.y = 250;
@@ -196,6 +200,8 @@ export class Experience extends THREE.EventDispatcher {
       ];
 
       this._mesh.material.uniforms.uPlaneRes.value = [this._mesh.scale.x, this._mesh.scale.y];
+
+      this._mesh.material.uniforms.uPixelRatio.value = this._dpr;
     }
   }
 
