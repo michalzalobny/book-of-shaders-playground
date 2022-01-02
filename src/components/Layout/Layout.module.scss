@@ -27,12 +27,17 @@
 }
 
 .authorWrapper {
-  position: fixed;
-  z-index: 5;
-  bottom: 20px;
-  right: 40px;
-  display: flex;
-  mix-blend-mode: difference;
+  display: none;
+
+  @media screen and (min-width: 767px) {
+    display: initial;
+    position: fixed;
+    z-index: 5;
+    bottom: 20px;
+    right: 40px;
+    display: flex;
+    mix-blend-mode: difference;
+  }
 }
 
 .contactSpacer {
