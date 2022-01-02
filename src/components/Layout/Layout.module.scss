@@ -38,3 +38,15 @@
 .contactSpacer {
   width: 8px;
 }
+
+.appBackground {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+  user-select: none;
+  pointer-events: none;
+}

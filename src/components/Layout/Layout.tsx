@@ -19,6 +19,7 @@ export const Layout = (props: Props) => {
   return (
     <>
       <div className={clsx(styles.readyWrapper, isReady && styles.readyWrapperReady)}></div>
+      <div className={styles.appBackground} />
       <div className={styles.authorWrapper}>
         <span className={sharedStyles.text}>Shaders Playground by</span>
         <span className={styles.contactSpacer} />
