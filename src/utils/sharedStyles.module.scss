@@ -37,7 +37,6 @@
     border-radius: inherit;
     transition-duration: 0.8s;
     transition-property: opacity, width, height;
-    transition-timing-function: cubic-bezier(0.64, 0.02, 0.16, 0.97);
   }
 
   &:hover {
