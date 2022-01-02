@@ -61,6 +61,12 @@ export default function Page(props: ShaderPageProps) {
           </span>
         </LinkHandler>
       </div>
+
+      <div className={styles.numberWrapper}>
+        <div className={styles.numberContainer}>
+          <div className={styles.number}>{shaderNumber}</div>
+        </div>
+      </div>
     </>
   );
 }

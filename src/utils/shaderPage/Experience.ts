@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import debounce from 'lodash/debounce';
 import { OrbitControls } from 'three-stdlib';
 
-import { MouseMove } from 'utils/Singletons/MouseMove';
+import { MouseMove } from 'utils/shaderPage/MouseMove';
 import { RendererBounds } from 'utils/sharedTypes';
 
 interface Constructor {

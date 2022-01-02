@@ -55,13 +55,14 @@
   height: 20%;
   border-radius: 50%;
   background-color: var(--black);
+  overflow: hidden;
 }
 
 .number {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -60%);
+  transform: translate(-50%, -55%);
   font-weight: 800;
   color: var(--white);
   font-size: 1.2rem;
