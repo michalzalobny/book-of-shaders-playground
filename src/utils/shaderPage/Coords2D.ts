@@ -61,11 +61,19 @@ export class Coords2D {
   };
 
   _onMouseMoveInternal = () => {
+    this._init();
+  };
+
+  _onPointerDown = () => {
+    this._init();
+  };
+
+  _init() {
     if (!this._isInit) {
       this._isInit = true;
       this._animateShow(1);
     }
-  };
+  }
 
   _onMouseOut = (event: MouseEvent) => {
     if (
@@ -87,6 +95,7 @@ export class Coords2D {
     document.addEventListener('mouseenter', this._onMouseEnter);
     document.addEventListener('mouseleave', this._onMouseOut);
     document.addEventListener('mousemove', this._onMouseMoveInternal);
+    document.addEventListener('pointerdown', this._onPointerDown);
   }
 
   _removeListeners() {
@@ -94,6 +103,7 @@ export class Coords2D {
     document.removeEventListener('mouseenter', this._onMouseEnter);
     document.removeEventListener('mouseleave', this._onMouseOut);
     document.removeEventListener('mousemove', this._onMouseMoveInternal);
+    document.removeEventListener('pointerdown', this._onPointerDown);
   }
 
   _draw() {
