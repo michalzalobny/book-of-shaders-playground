@@ -26,19 +26,13 @@ export const Layout = (props: Props) => {
         </LinkHandler>
       </div>
 
-      <div className={styles.codeWrapper}>
-        <LinkHandler
-          isExternal
-          elHref="https://github.com/javusScriptus/book-of-shaders-playground/tree/main/src/containers/Shaders"
-        >
-          <span className={clsx(styles.codeText)}>GitHub Repo</span>
-        </LinkHandler>
-      </div>
-
-      {router.pathname !== '/' && (
-        <div className={styles.backWrapper}>
-          <LinkHandler elHref="/">
-            <span className={clsx(styles.codeText)}>Back</span>
+      {router.pathname === '/' && (
+        <div className={styles.codeWrapper}>
+          <LinkHandler
+            isExternal
+            elHref="https://github.com/javusScriptus/book-of-shaders-playground/tree/main/src/containers/Shaders"
+          >
+            <span className={styles.codeText}>GitHub Repo</span>
           </LinkHandler>
         </div>
       )}
