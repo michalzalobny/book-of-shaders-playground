@@ -36,7 +36,13 @@ export default function IndexPage() {
           </div>
           <div className={styles.contactWrapper}>
             <LinkHandler isExternal elHref="https://www.linkedin.com/in/michal-zalobny-1a8257204/">
-              <span className={clsx(sharedStyles.underlineText, sharedStyles.underlineTextBlack)}>
+              <span
+                className={clsx(
+                  sharedStyles.text,
+                  sharedStyles.textBlack,
+                  sharedStyles.textUnderline
+                )}
+              >
                 Michal Zalobny
               </span>
             </LinkHandler>
@@ -44,9 +50,10 @@ export default function IndexPage() {
             <LinkHandler isExternal elHref="https://github.com/javusScriptus">
               <span
                 className={clsx(
-                  sharedStyles.underlineText,
-                  sharedStyles.underlineTextBold,
-                  sharedStyles.underlineTextBlack
+                  sharedStyles.text,
+                  sharedStyles.textBold,
+                  sharedStyles.textBlack,
+                  sharedStyles.textUnderline
                 )}
               >
                 javusScriptus

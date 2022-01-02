@@ -3,9 +3,9 @@ import clsx from 'clsx';
 
 import { LinkHandler } from 'components/LinkHandler/LinkHandler';
 import { useRouter } from 'next/router';
+import sharedStyles from 'utils/sharedStyles.module.scss';
 
 import styles from './Layout.module.scss';
-import sharedStyles from 'utils/sharedStyles.module.scss';
 
 interface Props {
   isReady: boolean;
@@ -20,10 +20,12 @@ export const Layout = (props: Props) => {
     <>
       <div className={clsx(styles.readyWrapper, isReady && styles.readyWrapperReady)}></div>
       <div className={styles.authorWrapper}>
-        <span className={sharedStyles.underlineText}>Shaders Playground by</span>
+        <span className={sharedStyles.text}>Shaders Playground by</span>
         <span className={styles.contactSpacer} />
         <LinkHandler isExternal elHref="https://www.linkedin.com/in/michal-zalobny-1a8257204/">
-          <span className={clsx(sharedStyles.underlineText, sharedStyles.underlineTextBold)}>
+          <span
+            className={clsx(sharedStyles.text, sharedStyles.textBold, sharedStyles.textUnderline)}
+          >
             Michal Zalobny
           </span>
         </LinkHandler>
@@ -35,7 +37,7 @@ export const Layout = (props: Props) => {
             isExternal
             elHref="https://github.com/javusScriptus/book-of-shaders-playground/tree/main/src/containers/Shaders"
           >
-            <span className={sharedStyles.underlineText}>GitHub Repo</span>
+            <span className={clsx(sharedStyles.text, sharedStyles.textUnderline)}>GitHub Repo</span>
           </LinkHandler>
         </div>
       )}

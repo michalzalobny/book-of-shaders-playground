@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import clsx from 'clsx';
 
 import { LinkHandler } from 'components/LinkHandler/LinkHandler';
 import { Head } from 'seo/Head/Head';
@@ -46,7 +47,7 @@ export default function Page(props: ShaderPageProps) {
 
       <div className={styles.backWrapper}>
         <LinkHandler elHref="/">
-          <span className={sharedStyles.underlineText}>Back</span>
+          <span className={clsx(sharedStyles.text, sharedStyles.textUnderline)}>Back</span>
         </LinkHandler>
       </div>
 
@@ -55,7 +56,9 @@ export default function Page(props: ShaderPageProps) {
           isExternal
           elHref={`https://github.com/javusScriptus/book-of-shaders-playground/tree/main/src/containers/Shaders/${shaderNumber}`}
         >
-          <span className={sharedStyles.underlineText}>Shader Code on GitHub</span>
+          <span className={clsx(sharedStyles.text, sharedStyles.textUnderline)}>
+            Shader Code on GitHub
+          </span>
         </LinkHandler>
       </div>
     </>
