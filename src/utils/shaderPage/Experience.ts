@@ -60,6 +60,7 @@ export class Experience extends THREE.EventDispatcher {
     this._resumeAppFrame();
 
     this._controls = new OrbitControls(this._camera, this._rendererEl);
+    this._controls.enableDamping = true;
     this._controls.update();
   }
 
@@ -145,6 +146,7 @@ export class Experience extends THREE.EventDispatcher {
     if (this._mesh) this._mesh.material.uniforms.uTime.value = time * 0.001;
     this._mouseMove.update();
     this._coords2D.update();
+    this._controls.update();
 
     this._renderer.render(this._scene, this._camera);
   };
