@@ -61,6 +61,8 @@ export class Experience extends THREE.EventDispatcher {
 
     this._controls = new OrbitControls(this._camera, this._rendererEl);
     this._controls.enableDamping = true;
+    this._controls.enableZoom = false;
+
     this._controls.update();
   }
 
