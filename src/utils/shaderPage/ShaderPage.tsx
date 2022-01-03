@@ -56,9 +56,7 @@ export default function Page(props: ShaderPageProps) {
           isExternal
           elHref={`https://github.com/javusScriptus/book-of-shaders-playground/tree/main/src/containers/Shaders/${shaderNumber}`}
         >
-          <span className={clsx(sharedStyles.text, sharedStyles.textUnderline)}>
-            Shader Code on GitHub
-          </span>
+          <span className={clsx(sharedStyles.text, sharedStyles.textUnderline)}>Source Code</span>
         </LinkHandler>
       </div>
 

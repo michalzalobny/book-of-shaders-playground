@@ -43,7 +43,7 @@ export default function IndexPage() {
             </div>
           </div>
           <div className={styles.contactWrapper}>
-            <LinkHandler isExternal elHref="https://www.linkedin.com/in/michal-zalobny-1a8257204/">
+            <LinkHandler isExternal elHref="https://creativeprojects.vercel.app/">
               <span
                 className={clsx(
                   sharedStyles.text,

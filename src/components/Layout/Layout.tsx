@@ -23,7 +23,7 @@ export const Layout = (props: Props) => {
       <div className={styles.authorWrapper}>
         <span className={sharedStyles.text}>Shaders Playground by</span>
         <span className={styles.contactSpacer} />
-        <LinkHandler isExternal elHref="https://www.linkedin.com/in/michal-zalobny-1a8257204/">
+        <LinkHandler isExternal elHref="https://creativeprojects.vercel.app/">
           <span
             className={clsx(sharedStyles.text, sharedStyles.textBold, sharedStyles.textUnderline)}
           >
