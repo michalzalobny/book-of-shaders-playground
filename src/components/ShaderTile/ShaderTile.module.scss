@@ -41,7 +41,7 @@
   width: 80%;
   height: 80%;
   transition: transform 0.8s;
-  transition-timing-function: cubic-bezier(0.64, 0.02, 0.16, 0.97) t;
+  transition-timing-function: cubic-bezier(0.24, 0.05, 0.16, 0.97);
   backface-visibility: hidden;
   z-index: 1;
 }
