@@ -8,6 +8,7 @@ varying vec2 vUv;
 
 #define PI 3.14159265359
 
+//Alternative plot function: 
 // float plot(vec2 st, float pct){
 //     return smoothstep( pct-0.02, pct, st.y) - smoothstep( pct, pct+0.02, st.y);
 // }
