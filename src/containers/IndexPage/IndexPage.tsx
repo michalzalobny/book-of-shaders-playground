@@ -8,6 +8,14 @@ import sharedStyles from 'utils/sharedStyles.module.scss';
 import img1 from 'assets/tileImages/1.jpg';
 import img2 from 'assets/tileImages/2.jpg';
 import img3 from 'assets/tileImages/3.jpg';
+import img4 from 'assets/tileImages/4.jpg';
+// import img5 from 'assets/tileImages/5.jpg';
+// import img6 from 'assets/tileImages/6.jpg';
+// import img7 from 'assets/tileImages/7.jpg';
+// import img8 from 'assets/tileImages/8.jpg';
+// import img9 from 'assets/tileImages/9.jpg';
+// import img10 from 'assets/tileImages/10.jpg';
+// import img11 from 'assets/tileImages/11.jpg';
 
 import styles from './IndexPage.module.scss';
 
@@ -65,6 +73,7 @@ export default function IndexPage() {
           <ShaderTile elHref="/shaders/1" imageSrc={img1.src} number="1" />
           <ShaderTile elHref="/shaders/2" imageSrc={img2.src} number="2" />
           <ShaderTile elHref="/shaders/3" imageSrc={img3.src} number="3" />
+          <ShaderTile elHref="/shaders/4" imageSrc={img4.src} number="4" />
         </div>
       </div>
     </>
