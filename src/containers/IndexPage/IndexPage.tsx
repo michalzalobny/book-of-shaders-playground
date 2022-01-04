@@ -12,7 +12,7 @@ import img4 from 'assets/tileImages/4.jpg';
 import img5 from 'assets/tileImages/5.jpg';
 import img6 from 'assets/tileImages/6.jpg';
 import img7 from 'assets/tileImages/7.jpg';
-// import img8 from 'assets/tileImages/8.jpg';
+import img8 from 'assets/tileImages/8.jpg';
 // import img9 from 'assets/tileImages/9.jpg';
 // import img10 from 'assets/tileImages/10.jpg';
 // import img11 from 'assets/tileImages/11.jpg';
@@ -77,6 +77,7 @@ export default function IndexPage() {
           <ShaderTile elHref="/shaders/5" imageSrc={img5.src} number="5" />
           <ShaderTile elHref="/shaders/6" imageSrc={img6.src} number="6" />
           <ShaderTile elHref="/shaders/7" imageSrc={img7.src} number="7" />
+          <ShaderTile elHref="/shaders/8" imageSrc={img8.src} number="8" />
         </div>
       </div>
     </>
