@@ -2,6 +2,8 @@ import TWEEN from '@tweenjs/tween.js';
 import * as THREE from 'three';
 import debounce from 'lodash/debounce';
 import { OrbitControls } from 'three-stdlib';
+//@ts-ignore
+import { Text, preloadFont } from 'troika-three-text';
 
 import { MouseMove } from 'utils/shaderPage/MouseMove';
 import { Coords2D } from 'utils/shaderPage/Coords2D';
@@ -36,6 +38,7 @@ export class Experience extends THREE.EventDispatcher {
   _fragmentShader: string;
   _coords2D = new Coords2D();
   _dpr = 1;
+  _uvTexts: Text[] = [];
 
   constructor({ fragmentShader, vertexShader, rendererEl }: Constructor) {
     super();
@@ -54,7 +57,8 @@ export class Experience extends THREE.EventDispatcher {
     });
 
     this._renderer.outputEncoding = THREE.sRGBEncoding;
-    this._addPlane();
+    this._preloadFont();
+
     this._onResize();
     this._addListeners();
     this._resumeAppFrame();
@@ -64,6 +68,23 @@ export class Experience extends THREE.EventDispatcher {
     this._controls.enableZoom = false;
 
     this._controls.update();
+  }
+
+  _preloadFont() {
+    preloadFont(
+      {
+        font: '/fonts/openSans400.woff',
+      },
+      () => {
+        this._onAssetsLoaded();
+      }
+    );
+  }
+
+  _onAssetsLoaded() {
+    this._addPlane();
+    this._addTexts();
+    this._updatePlaneScale();
   }
 
   _onResizeDebounced = debounce(() => this._onResize(), 300);
@@ -149,6 +170,9 @@ export class Experience extends THREE.EventDispatcher {
     this._mouseMove.update();
     this._coords2D.update();
     this._controls.update();
+    this._uvTexts.forEach(t => {
+      t.sync();
+    });
 
     this._renderer.render(this._scene, this._camera);
   };
@@ -157,6 +181,75 @@ export class Experience extends THREE.EventDispatcher {
     if (this._rafId) {
       window.cancelAnimationFrame(this._rafId);
     }
+  }
+
+  _updateTextPositions() {
+    const distanceFactor = 1.05;
+    let distance = 1;
+    if (this._mesh) distance = this._mesh.scale.x * 0.5;
+
+    this._uvTexts.forEach((t, key) => {
+      switch (key) {
+        case 0:
+          t.position.x = -distance * distanceFactor;
+          t.position.y = -distance * distanceFactor;
+          break;
+
+        case 1:
+          t.position.x = -distance * distanceFactor;
+          t.position.y = distance * distanceFactor;
+          break;
+
+        case 2:
+          t.position.x = distance * distanceFactor;
+          t.position.y = -distance * distanceFactor;
+          break;
+
+        case 3:
+          t.position.x = distance * distanceFactor;
+          t.position.y = distance * distanceFactor;
+          break;
+
+        default:
+          break;
+      }
+    });
+  }
+
+  //Adds UV coordinate texts at the corners of the plane
+  _addTexts() {
+    //left bottom
+    const lbText = new Text();
+    lbText.text = '(0,0)';
+    lbText.anchorX = 'right';
+    this._uvTexts.push(lbText);
+
+    //left top
+    const ltText = new Text();
+    ltText.text = '(0,1)';
+    ltText.anchorX = 'right';
+    ltText.anchorY = 'bottom';
+    this._uvTexts.push(ltText);
+
+    //right bottom
+    const rbText = new Text();
+    rbText.text = '(1,0)';
+    this._uvTexts.push(rbText);
+
+    //right top
+    const rtText = new Text();
+    rtText.text = '(1,1)';
+    rtText.anchorY = 'bottom';
+    this._uvTexts.push(rtText);
+
+    this._uvTexts.forEach(t => {
+      // Set properties to configure:
+      t.fontSize = 14;
+      t.font = '/fonts/openSans400.woff';
+      t.position.z = -1;
+      t.color = 0x000000;
+      this._scene.add(t);
+    });
   }
 
   _addPlane() {
@@ -206,6 +299,7 @@ export class Experience extends THREE.EventDispatcher {
       this._mesh.material.uniforms.uPlaneRes.value = [this._mesh.scale.x, this._mesh.scale.y];
 
       this._mesh.material.uniforms.uPixelRatio.value = this._dpr;
+      this._updateTextPositions();
     }
   }
 
@@ -222,5 +316,10 @@ export class Experience extends THREE.EventDispatcher {
 
     this._stopAppFrame();
     this._removeListeners();
+
+    this._uvTexts.forEach(t => {
+      this._scene.remove(t);
+      t.dispose();
+    });
   }
 }
