@@ -28,7 +28,7 @@ export const Head = (props: HeadProps) => {
       <meta property="og:description" content={description} />
       <meta
         property="og:image"
-        content="https://res.cloudinary.com/dpv0ukspz/image/upload/v1640876577/1_cwotw1.jpg"
+        content="https://res.cloudinary.com/dpv0ukspz/image/upload/v1641294581/og_yvqqel.jpg"
       />
 
       <meta name="twitter:card" content="summary_large_image" />
