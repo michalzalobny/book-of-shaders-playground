@@ -21,7 +21,7 @@ void main()
 
     vec3 pct = vec3(vUv.x );
 
-    pct = vec3(-pow(cos((uTime)/2.), 2.) * 0.5  + pow(cos((PI*(vUv.y - 0.8 ))/2.5), 2.));
+    pct = vec3(-pow(cos((uTime)/2.), 2.) * 0.8  + pow(cos((PI*(vUv.y - 1.2 ))/2.5), 2.));
 
     color = mix(colorA, colorB, pct);
 
