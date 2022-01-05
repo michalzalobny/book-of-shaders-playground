@@ -59,9 +59,30 @@
   }
 
   &Box {
+    position: relative;
     cursor: pointer;
     border: 2px solid var(--white);
-    padding: 9px 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 70%;
+      left: 20px;
+      width: calc(100% - 40px);
+      height: 1px;
+      background-color: currentColor;
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 0.6s cubic-bezier(0.64, 0.02, 0.16, 0.97);
+    }
+
+    &:hover {
+      &:before {
+        transform: scaleX(1);
+      }
+    }
   }
 
   &Black {
