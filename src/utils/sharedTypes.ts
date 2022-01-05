@@ -12,3 +12,5 @@ export interface Bounds {
   width: number;
   height: number;
 }
+
+export type ViewMode = 'fragment' | 'vertex' | 'none';

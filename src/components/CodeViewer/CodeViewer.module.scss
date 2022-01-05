@@ -1,0 +1,104 @@
+.codeContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  opacity: 1;
+  transition: opacity 0.75s cubic-bezier(0.24, 0.05, 0.16, 0.97),
+    transform 0.75s cubic-bezier(0.36, 0.02, 0.16, 0.97);
+
+  background-color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: saturate(180%) blur(8px);
+
+  &Hidden {
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+    transform: translateX(-10%);
+  }
+
+  pre {
+    overflow: auto;
+    padding: 40px !important;
+    position: relative;
+    line-height: 1.5;
+    font-size: 14px;
+    background: transparent !important;
+    max-height: 65vh;
+
+    @media screen and (min-width: 767px) {
+      max-height: 70vh;
+    }
+  }
+}
+
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 15;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: saturate(180%) blur(8px);
+  transition: opacity 0.75s cubic-bezier(0.24, 0.05, 0.16, 0.97);
+
+  &Hidden {
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+  }
+}
+
+.codeBtnWrapper {
+  cursor: pointer;
+  position: fixed;
+  z-index: 5;
+  bottom: 20px;
+  right: 40px;
+  display: flex;
+  mix-blend-mode: difference;
+
+  @media screen and (min-width: 767px) {
+    right: initial;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.buttonsWrapper {
+  display: flex;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 25px;
+
+  &Spacer {
+    width: 20px;
+  }
+}
+
+.containersWrapper {
+  z-index: 20;
+  width: 80%;
+  position: fixed;
+  top: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+  transition: opacity 0.75s cubic-bezier(0.24, 0.05, 0.16, 0.97);
+
+  @media screen and (min-width: 767px) {
+    top: 120px;
+    width: 80rem;
+  }
+
+  &Hidden {
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+  }
+}

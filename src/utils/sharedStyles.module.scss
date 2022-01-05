@@ -58,8 +58,15 @@
     font-weight: 800;
   }
 
+  &Box {
+    cursor: pointer;
+    border: 2px solid var(--white);
+    padding: 9px 20px;
+  }
+
   &Black {
     color: var(--black);
+    border-color: var(--black);
   }
 
   &Underline {
