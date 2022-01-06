@@ -27,11 +27,9 @@ void main()
     //Top right
     float t = smoothstep(1., .9, st.y);
     float r = smoothstep(1., .9, st.x);
-     pct *= t*r;
-    // vec2 tr = smoothstep(vec2(0.1, 0.2), 1.-st);
-    // pct *= tr.x * tr.y;
+    pct *= t*r;
 
-    vec3 color = vec3(1. - pct);
+    vec3 color = vec3(pct);
 
     gl_FragColor = vec4(color, 1.0);
 }
