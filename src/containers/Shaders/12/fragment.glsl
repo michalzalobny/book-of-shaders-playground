@@ -25,11 +25,13 @@ float square(vec2 st, float width, float offsetX, float offsetY){
 
 
 float squareStroke(vec2 st, float width , float offsetX, float offsetY, float stroke){
-    st.x -=0.5 - offsetX;
-    st.y -=0.5 - offsetY;
+    float squareBig = square(st, width, offsetX, offsetY);
+    float squareSmall = square(st, width - 2. * stroke, offsetX, offsetY);
+    return squareBig - squareSmall;
 
-    float strength = step(width / 2. -  stroke, max(abs(st.x), abs(st.y)));
-    return strength *= 1.0 - step(width / 2., max(abs(st.x), abs(st.y)));
+    //Alternative function for strokes: 
+    // float strength = step(width / 2. -  stroke, max(abs(st.x - 0.5 + offsetX), abs(st.y - 0.5 + offsetY)));
+    // return strength *= 1.0 - step(width / 2., max(abs(st.x - 0.5 + offsetX), abs(st.y - 0.5 + offsetY)));
 }
 
 void main()
@@ -47,7 +49,7 @@ void main()
     float squareStroke5 = squareStroke(st, 1.1, 0., -0.85, 0.025);
     float squareStroke6 = squareStroke(st, 1.1, -0.295, -0., 0.025);
 
-    vec3 strokes = vec3(squareStroke2 + squareStroke1 + squareStroke3 + squareStroke4 + squareStroke5 + squareStroke6);
+    float strokes = squareStroke1 + squareStroke2 + squareStroke3 + squareStroke4 + squareStroke5 + squareStroke6;
 
     float squares = redSquare + yellowSquare + blueSquare;
     vec3 background = (1. - squares) * cBackground;
