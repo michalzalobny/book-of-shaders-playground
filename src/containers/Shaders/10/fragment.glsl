@@ -31,3 +31,14 @@ void main()
 
     gl_FragColor = vec4(color, 1.0);
 }
+
+//Same but using floor : 
+//Bottom left
+// float b = floor(st.y * 10.);
+// float l = floor(st.x * 10.);
+// float pct = b * l;
+
+// //Top right
+// float t = floor((1. - st.y) * 10.);
+// float r = floor((1. - st.x) * 10.);
+// pct *= t*r;

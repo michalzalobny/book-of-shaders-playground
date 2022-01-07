@@ -16,6 +16,32 @@ import img8 from 'assets/tileImages/8.jpg';
 import img9 from 'assets/tileImages/9.jpg';
 import img10 from 'assets/tileImages/10.jpg';
 import img11 from 'assets/tileImages/11.jpg';
+import img12 from 'assets/tileImages/12.jpg';
+// import img13 from 'assets/tileImages/13.jpg';
+// import img14 from 'assets/tileImages/14.jpg';
+// import img15 from 'assets/tileImages/15.jpg';
+// import img16 from 'assets/tileImages/16.jpg';
+// import img17 from 'assets/tileImages/17.jpg';
+// import img18 from 'assets/tileImages/18.jpg';
+// import img19 from 'assets/tileImages/19.jpg';
+// import img20 from 'assets/tileImages/20.jpg';
+// import img21 from 'assets/tileImages/21.jpg';
+// import img22 from 'assets/tileImages/22.jpg';
+// import img23 from 'assets/tileImages/23.jpg';
+// import img24 from 'assets/tileImages/24.jpg';
+// import img25 from 'assets/tileImages/25.jpg';
+// import img26 from 'assets/tileImages/26.jpg';
+// import img27 from 'assets/tileImages/27.jpg';
+// import img28 from 'assets/tileImages/28.jpg';
+// import img29 from 'assets/tileImages/29.jpg';
+// import img30 from 'assets/tileImages/30.jpg';
+// import img31 from 'assets/tileImages/31.jpg';
+// import img32 from 'assets/tileImages/32.jpg';
+// import img33 from 'assets/tileImages/33.jpg';
+// import img34 from 'assets/tileImages/34.jpg';
+// import img35 from 'assets/tileImages/35.jpg';
+// import img36 from 'assets/tileImages/36.jpg';
+// import img37 from 'assets/tileImages/37.jpg';
 
 import styles from './IndexPage.module.scss';
 
@@ -81,6 +107,7 @@ export default function IndexPage() {
           <ShaderTile elHref="/shaders/9" imageSrc={img9.src} number="9" />
           <ShaderTile elHref="/shaders/10" imageSrc={img10.src} number="10" />
           <ShaderTile elHref="/shaders/11" imageSrc={img11.src} number="11" />
+          <ShaderTile elHref="/shaders/12" imageSrc={img12.src} number="12" />
         </div>
       </div>
     </>
