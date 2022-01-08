@@ -16,6 +16,10 @@ float random(vec2 st)
 void main()
 {
     float color = 1.- (abs(length(vUv - 0.5) - 0.2) * 10.0);
+
+    //Same but squshed
+    float color = 1.- (abs(distance(vec2(vUv.x, (vUv.y - 0.5) * 4. + 0.5), vec2(0.5)) - 0.2) * 10.0);
+
     color = max(min(color, 1.0), 0.0);
 
     gl_FragColor = vec4(vec3(color), 1.0);
