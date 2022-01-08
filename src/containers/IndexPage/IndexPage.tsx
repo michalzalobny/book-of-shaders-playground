@@ -21,7 +21,7 @@ import img13 from 'assets/tileImages/13.jpg';
 import img14 from 'assets/tileImages/14.jpg';
 import img15 from 'assets/tileImages/15.jpg';
 import img16 from 'assets/tileImages/16.jpg';
-// import img17 from 'assets/tileImages/17.jpg';
+import img17 from 'assets/tileImages/17.jpg';
 // import img18 from 'assets/tileImages/18.jpg';
 // import img19 from 'assets/tileImages/19.jpg';
 // import img20 from 'assets/tileImages/20.jpg';
@@ -112,6 +112,7 @@ export default function IndexPage() {
           <ShaderTile elHref="/shaders/14" imageSrc={img14.src} number="14" />
           <ShaderTile elHref="/shaders/15" imageSrc={img15.src} number="15" />
           <ShaderTile elHref="/shaders/16" imageSrc={img16.src} number="16" />
+          <ShaderTile elHref="/shaders/17" imageSrc={img17.src} number="17" />
         </div>
       </div>
     </>
