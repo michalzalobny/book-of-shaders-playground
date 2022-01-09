@@ -19,10 +19,8 @@ void main()
     mouseNormalized.x = (uMouse.x - (uCanvasRes.x - uPlaneRes.x) * 0.5) / uPlaneRes.x;
     mouseNormalized.y = ((uCanvasRes.y -  uMouse.y) - (uCanvasRes.y - uPlaneRes.y) * 0.5) / uPlaneRes.y;
 
-    // mouseNormalized = vec2(0.5, 0.5);
-
     float change = (sin(uTime * 0.6) + 1.) / 2.;
-    float angle = atan(vUv.x - mouseNormalized.x, vUv.y - mouseNormalized.y);
+    float angle = atan(vUv.x - mouseNormalized.x, vUv.y - mouseNormalized.y); //The values of atan(x,y) go from -PI to PI
     angle /= PI * 2.0 * change;
     angle += 0.5;
     float strength = angle;

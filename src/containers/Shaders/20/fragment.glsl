@@ -15,22 +15,10 @@ float random(vec2 st)
 
 void main()
 {
-    vec2 mouseNormalized;
-    mouseNormalized.x = (uMouse.x - (uCanvasRes.x - uPlaneRes.x) * 0.5) / uPlaneRes.x;
-    mouseNormalized.y = ((uCanvasRes.y -  uMouse.y) - (uCanvasRes.y - uPlaneRes.y) * 0.5) / uPlaneRes.y;
-
-    // mouseNormalized = vec2(0.5, 0.5);
-
-    float change = (sin(uTime * 0.6) + 1.) / 2.;
-    float angle = atan(vUv.x - mouseNormalized.x, vUv.y - mouseNormalized.y);
-    angle /= PI * 2.0 * change;
-    angle += 0.5;
-    float strength = angle;
-
-    strength = step(0.5,mod(strength * 20.* change , 1.));
-
-    //similar result:
-    //float strength = sin(angle * 100.0);
+    //The atan values go from -PI to PI so we divide it by 2 PI and add +0.5 to make it go from 0 to 1
+    float angle = atan(vUv.x - 0.5, vUv.y - 0.5) / (PI * 2.0) + 0.5;
+    float radius = 0.25 + sin(angle * 100.0) * 0.02;
+    float strength = 1.0 - step(0.01, abs(distance(vUv, vec2(0.5)) - radius));
 
     gl_FragColor = vec4(vec3(strength), 1.0);
 }
