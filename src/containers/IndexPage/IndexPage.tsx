@@ -121,6 +121,7 @@ export default function IndexPage() {
           <ShaderTile elHref="/shaders/23" imageSrc={img23.src} number="23" />
           <ShaderTile elHref="/shaders/24" imageSrc={img24.src} number="24" />
           <ShaderTile elHref="/shaders/25" imageSrc={img25.src} number="25" />
+          {/* <ShaderTile elHref="/shaders/26" imageSrc={img26.src} number="26" /> */}
         </div>
       </div>
     </>
