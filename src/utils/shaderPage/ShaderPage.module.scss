@@ -59,6 +59,7 @@
   background-color: var(--white);
   opacity: 1;
   transition: opacity 0.8s;
+  transition-delay: 0.25s;
 
   &Uncover {
     opacity: 0;
