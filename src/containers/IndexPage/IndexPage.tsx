@@ -46,16 +46,9 @@ import img26 from 'assets/tileImages/26.jpg';
 import styles from './IndexPage.module.scss';
 
 export default function IndexPage() {
-  const [shouldUncover, setShouldUncover] = React.useState(false);
-
-  React.useEffect(() => {
-    setShouldUncover(true);
-  }, [shouldUncover]);
-
   return (
     <>
       <Head />
-      <div className={clsx(styles.pageWrapper, shouldUncover && styles.pageWrapperUncover)} />
       <div className={styles.wrapper}>
         <header className={styles.header}>
           <div className={styles.titleWrapper}>
