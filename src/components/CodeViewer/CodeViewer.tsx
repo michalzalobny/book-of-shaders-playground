@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { agate } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { nord } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 import { ViewMode } from 'utils/sharedTypes';
 import sharedStyles from 'utils/sharedStyles.module.scss';
@@ -58,7 +58,7 @@ export const CodeViewer = (props: Props) => {
             viewMode !== 'fragment' && styles.codeContainerHidden
           )}
         >
-          <SyntaxHighlighter language="glsl" style={agate}>
+          <SyntaxHighlighter language="glsl" showLineNumbers style={nord}>
             {fragmentShader}
           </SyntaxHighlighter>
         </div>
@@ -69,7 +69,7 @@ export const CodeViewer = (props: Props) => {
             viewMode !== 'vertex' && styles.codeContainerHidden
           )}
         >
-          <SyntaxHighlighter language="glsl" style={agate}>
+          <SyntaxHighlighter language="glsl" showLineNumbers style={nord}>
             {vertexShader}
           </SyntaxHighlighter>
         </div>

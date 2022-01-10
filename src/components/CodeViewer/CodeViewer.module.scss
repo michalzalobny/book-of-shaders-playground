@@ -40,7 +40,7 @@
   top: 0;
   left: 0;
   z-index: 15;
-  background-color: rgba(0, 0, 0, 0.65);
+  background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: saturate(180%) blur(8px);
   transition: opacity 0.75s cubic-bezier(0.24, 0.05, 0.16, 0.97);
 
@@ -92,7 +92,7 @@
 
   @media screen and (min-width: 767px) {
     top: 120px;
-    width: 80rem;
+    width: 90rem;
   }
 
   &Hidden {
