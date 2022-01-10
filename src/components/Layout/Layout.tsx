@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 
 import { LinkHandler } from 'components/LinkHandler/LinkHandler';
@@ -15,6 +15,16 @@ export const Layout = (props: Props) => {
   const { isReady } = props;
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (isReady && !document.body.classList.contains('isReady')) {
+      document.body.classList.add('isReady');
+    }
+
+    return () => {
+      document.body.classList.remove('isReady');
+    };
+  }, [isReady]);
 
   return (
     <>
