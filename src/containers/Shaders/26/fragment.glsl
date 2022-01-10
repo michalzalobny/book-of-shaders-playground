@@ -95,6 +95,11 @@ float pulsingCircle(float width, vec2 st, vec2 position){
     return color;
 }
 
+vec2 randomPos(float speed, float radius){
+    float random = 0.5 * (sin(uTime*.2) + 1.0); //Goes from 0 to 1
+    return vec2(sin(speed), cos(speed))* radius + 0.5  - 0.1 * random;
+}
+
 void main(){
     vec3 color = vec3(0.,0.,0.);
 
@@ -103,21 +108,43 @@ void main(){
     vec3 ring3 = ring(0.3, 0.001, vec2(0.5), vUv) * blue2;
     vec3 ring4 = ring(0.4, 0.002, vec2(0.5), vUv) * blue2;
     float movingL = movingLine(vUv, vec2(0.5), 0.4);
-    float movingLStep = movingL * 2.5 + 1.;
+    float movingLStep = movingL * 2.5; //Used to highlight the red circles
     vec3 radar = movingL * blue3;
 
-    float randPos = floor(uTime* 2.) * 0.;
-    float radius = 0.3;
+    vec2 redCirclePos = randomPos(uTime * 0.1, 0.3);
+    vec3 redCircle = pulsingCircle(0.015, vUv, redCirclePos ) * vec3(movingLStep) * red;
 
-    vec3 redCircle = pulsingCircle(0.015, vUv, vec2(sin(randPos), cos(randPos))* radius + 0.5 )*  vec3(movingLStep) * red;
-;
+    vec2 redCircle2Pos = randomPos(-uTime * 0.2 - 15., 0.3);
+    vec3 redCircle2 = pulsingCircle(0.015, vUv, redCircle2Pos ) * vec3(movingLStep) * red;
+
+    vec2 point1Pos = randomPos(uTime * 0.2 - 1.5, 0.2);
+    vec3 point1 = circle(0.005, vUv, point1Pos ) * blue1;
+
+    vec2 point2Pos = randomPos(uTime * 0.15 - 10.1, 0.25);
+    vec3 point2 = circle(0.005, vUv, point2Pos ) * blue1;
+
+    vec2 point3Pos = randomPos(-uTime * 0.21 - 4.1, 0.09);
+    vec3 point3 = circle(0.005, vUv, point3Pos ) * blue1;
+
+    vec2 point4Pos = randomPos(uTime * 0.358 - 6.1, 0.25);
+    vec3 point4 = circle(0.005, vUv, point4Pos ) * blue1;
+
+    vec2 point5Pos = randomPos(-uTime * 0.37 - 0.4, 0.12);
+    vec3 point5 = circle(0.005, vUv, point5Pos ) * blue1;
 
     color += ring1;
     color += ring2;
     color += ring3;
     color += ring4;
     color += radar;
-    color += redCircle;
 
+    color += redCircle;
+    color += redCircle2;
+    color += point1;
+    color += point2;
+    color += point3;
+    color += point4;
+    color += point5;
+    
     gl_FragColor = vec4(color, 1.0);
 }
