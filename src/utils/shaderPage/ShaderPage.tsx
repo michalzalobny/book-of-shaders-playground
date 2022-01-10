@@ -15,10 +15,15 @@ export default function Page(props: ShaderPageProps) {
   const [viewMode, setViewMode] = useState<ViewMode>('none');
   const { fragmentShader, vertexShader } = props;
   const rendererEl = React.useRef(null);
+  const [shouldUncover, setShouldUncover] = useState(false);
 
   const router = useRouter();
 
   const [shaderNumber, setShaderNumber] = useState('');
+
+  useEffect(() => {
+    setShouldUncover(true);
+  }, [shouldUncover]);
 
   //Get shader number from the pathnem to later pass it to github link
   useEffect(() => {
@@ -48,6 +53,8 @@ export default function Page(props: ShaderPageProps) {
         fragmentShader={fragmentShader}
         vertexShader={vertexShader}
       />
+
+      <div className={clsx(styles.pageWrapper, shouldUncover && styles.pageWrapperUncover)} />
 
       <div
         style={{ zIndex: -1, position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }}
