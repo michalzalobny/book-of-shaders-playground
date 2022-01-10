@@ -58,7 +58,7 @@ float movingLine(vec2 uv, vec2 center, float radius){
 
     //Translate uvs just to apply the rotation, then reset to default
     uv -= vec2(0.5);
-    uv = rotate2d( uTime * -1. * 2.) * uv;
+    uv = rotate2d( uTime * -1.2) * uv;
     uv += vec2(0.5);
 
     //Limit the radar rendering with negative space
@@ -72,6 +72,29 @@ float movingLine(vec2 uv, vec2 center, float radius){
     return clamp(strength - negativeSpace, 0., 1.);
 }
 
+float pulsingCircle(float width, vec2 st, vec2 position){
+    float color;
+
+    float innerCircle = circle(width, st ,position);
+
+    float pulseFreq = uTime * 0.04;
+    float maxRingWidth = 5.0 * width;
+
+    float ring1Width = mod(pulseFreq, maxRingWidth) + width;
+    float ring1Life = mix(1.0, 0.0, ring1Width / (maxRingWidth + width)); //Goes from 1 to 0 based on the ring width
+    float ring1 = ring( ring1Width, width * 0.4 * ring1Life, position, st) * ring1Life;
+
+    float ring2Width = mod(pulseFreq + 0.015, maxRingWidth) + width;
+    float ring2Life = mix(1.0, 0.0, ring2Width / (maxRingWidth + width)); //Goes from 1 to 0 based on the ring width
+    float ring2 = ring( ring2Width, width * 0.4 * ring2Life, position, st) * ring2Life;
+
+    color += innerCircle;
+    color += ring1;
+    color += ring2;
+
+    return color;
+}
+
 void main(){
     vec3 color = vec3(0.,0.,0.);
 
@@ -80,12 +103,14 @@ void main(){
     vec3 ring3 = ring(0.3, 0.001, vec2(0.5), vUv) * blue2;
     vec3 ring4 = ring(0.4, 0.002, vec2(0.5), vUv) * blue2;
     float movingL = movingLine(vUv, vec2(0.5), 0.4);
+    float movingLStep = movingL * 2.5 + 1.;
     vec3 radar = movingL * blue3;
 
-    float randPos = floor(uTime* 2.);
-    float rad = 0.4;
+    float randPos = floor(uTime* 2.) * 0.;
+    float radius = 0.3;
 
-    vec3 redCircle = circle(0.02, vUv, vec2(sin(randPos  + 1.5)*rad + 0.5, cos(randPos + 1.5 )*rad + 0.5) ) * red ;
+    vec3 redCircle = pulsingCircle(0.015, vUv, vec2(sin(randPos), cos(randPos))* radius + 0.5 )*  vec3(movingLStep) * red;
+;
 
     color += ring1;
     color += ring2;
