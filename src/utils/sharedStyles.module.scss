@@ -62,7 +62,7 @@
     position: relative;
     cursor: pointer;
     border: 2px solid var(--white);
-    padding: 12px 10px;
+    padding: 12px 15px;
     font-size: 13px;
     border-radius: 8px;
 
@@ -70,13 +70,18 @@
       content: '';
       position: absolute;
       top: 70%;
-      left: 20px;
-      width: calc(100% - 40px);
+      left: 15px;
+      width: calc(100% - 30px);
       height: 1px;
       background-color: currentColor;
       transform-origin: left;
       transform: scaleX(0);
       transition: transform 0.6s cubic-bezier(0.64, 0.02, 0.16, 0.97);
+
+      @media only screen and (min-width: 767px) {
+        left: 20px;
+        width: calc(100% - 40px);
+      }
     }
 
     &:hover {
