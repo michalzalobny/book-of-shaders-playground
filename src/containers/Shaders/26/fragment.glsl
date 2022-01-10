@@ -111,10 +111,10 @@ void main(){
     float movingLStep = movingL * 2.5; //Used to highlight the red circles
     vec3 radar = movingL * blue3;
 
-    vec2 redCirclePos = randomPos(uTime * 0.1, 0.3);
+    vec2 redCirclePos = randomPos(uTime * 0.02, 0.3);
     vec3 redCircle = pulsingCircle(0.015, vUv, redCirclePos ) * vec3(movingLStep) * red;
 
-    vec2 redCircle2Pos = randomPos(-uTime * 0.2 - 15., 0.3);
+    vec2 redCircle2Pos = randomPos(-uTime * 0.03 - 10., 0.3);
     vec3 redCircle2 = pulsingCircle(0.015, vUv, redCircle2Pos ) * vec3(movingLStep) * red;
 
     vec2 point1Pos = randomPos(uTime * 0.2 - 1.5, 0.2);
@@ -145,6 +145,5 @@ void main(){
     color += point3;
     color += point4;
     color += point5;
-    
     gl_FragColor = vec4(color, 1.0);
 }
