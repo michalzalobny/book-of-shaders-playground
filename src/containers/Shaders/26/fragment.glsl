@@ -7,9 +7,6 @@ uniform float uPixelRatio;
 varying vec2 vUv;
 
 #define PI 3.14159265359
-
-#define SMOOTH(r,R) (1.0-smoothstep(R-1.0,R+1.0, r))
-
 #define blue1 vec3(0.74,0.95,1.00);
 #define blue2 vec3(0.87,0.98,1.00);
 #define blue3 vec3(0.35,0.76,0.83);
@@ -35,16 +32,29 @@ float ring(float width, float strokeWidth, vec2 position, vec2 st){
     return 1.0 - step(strokeWidth, abs(distance(st, position) - (width - strokeWidth)));
 }
 
-float random(vec2 st)
-{
+float random(vec2 st){
     return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
 }
 
+float customAngle(vec2 st, vec2 position, float circlePercent, float rotation){
+    //Translate uvs just to apply the rotation, then reset to default
+    st -= vec2(0.5);
+    st = rotate2d(rotation) * st;
+    st += vec2(0.5);
 
-float movingLine(vec2 uv, vec2 center, float radius)
-{
+    st -= position;
+    float angle = atan(st.x, st.y); //The values of atan(x,y) go from -PI to PI
+    angle += PI; 
+    angle = angle * 0.5 / PI; // goes from 0 to 1;
+    float a = clamp(mix(0. , 1. , angle * 1. / circlePercent), 0.0, 1.0); //Draws the angle
+    float b = step(circlePercent, angle); //Cut out the color after the angle is finished
+    return a - b;
+}
+
+
+float movingLine(vec2 uv, vec2 center, float radius){
     float lineWidth = 0.0025;
-    float glowStrength = 0.5;
+    float glowStrength = 0.8;
 
     //Translate uvs just to apply the rotation, then reset to default
     uv -= vec2(0.5);
@@ -57,14 +67,12 @@ float movingLine(vec2 uv, vec2 center, float radius)
     float negativeSpace = outerCircle + outerSquare;
 
     float line = step(0.5 , uv.x) * step(0.5 - lineWidth , uv.y) * step(0.5 - lineWidth ,1.- uv.y);
-    float angle = atan(uv.x - 0.5, uv.y - 0.5) / (PI * 2.0) + 0.5;
-    float strength = clamp(mod(angle * 4., 1.0) * glowStrength + line, 0.0, 1.0);
-
-    return clamp(strength - negativeSpace, 0., 1.) ;
+    float angle = customAngle(uv, vec2(0.5), 0.25, PI);
+    float strength = clamp(angle * glowStrength + line, 0.0, 1.0);
+    return clamp(strength - negativeSpace, 0., 1.);
 }
 
-void main()
-{
+void main(){
     vec3 color = vec3(0.,0.,0.);
 
     vec3 ring1 = ring(0.02, 0.001, vec2(0.5), vUv) * blue3;
