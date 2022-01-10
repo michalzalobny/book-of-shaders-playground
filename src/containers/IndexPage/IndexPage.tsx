@@ -96,32 +96,32 @@ export default function IndexPage() {
           </div>
         </header>
         <div className={styles.tilesWrapper}>
-          <ShaderTile elHref="/shaders/1" imageSrc={img1.src} number="1" />
-          <ShaderTile elHref="/shaders/2" imageSrc={img2.src} number="2" />
-          <ShaderTile elHref="/shaders/3" imageSrc={img3.src} number="3" />
-          <ShaderTile elHref="/shaders/4" imageSrc={img4.src} number="4" />
-          <ShaderTile elHref="/shaders/5" imageSrc={img5.src} number="5" />
-          <ShaderTile elHref="/shaders/6" imageSrc={img6.src} number="6" />
-          <ShaderTile elHref="/shaders/7" imageSrc={img7.src} number="7" />
-          <ShaderTile elHref="/shaders/8" imageSrc={img8.src} number="8" />
-          <ShaderTile elHref="/shaders/9" imageSrc={img9.src} number="9" />
-          <ShaderTile elHref="/shaders/10" imageSrc={img10.src} number="10" />
-          <ShaderTile elHref="/shaders/11" imageSrc={img11.src} number="11" />
-          <ShaderTile elHref="/shaders/12" imageSrc={img12.src} number="12" />
-          <ShaderTile elHref="/shaders/13" imageSrc={img13.src} number="13" />
-          <ShaderTile elHref="/shaders/14" imageSrc={img14.src} number="14" />
-          <ShaderTile elHref="/shaders/15" imageSrc={img15.src} number="15" />
-          <ShaderTile elHref="/shaders/16" imageSrc={img16.src} number="16" />
-          <ShaderTile elHref="/shaders/17" imageSrc={img17.src} number="17" />
-          <ShaderTile elHref="/shaders/18" imageSrc={img18.src} number="18" />
-          <ShaderTile elHref="/shaders/19" imageSrc={img19.src} number="19" />
-          <ShaderTile elHref="/shaders/20" imageSrc={img20.src} number="20" />
-          <ShaderTile elHref="/shaders/21" imageSrc={img21.src} number="21" />
-          <ShaderTile elHref="/shaders/22" imageSrc={img22.src} number="22" />
-          <ShaderTile elHref="/shaders/23" imageSrc={img23.src} number="23" />
-          <ShaderTile elHref="/shaders/24" imageSrc={img24.src} number="24" />
-          <ShaderTile elHref="/shaders/25" imageSrc={img25.src} number="25" />
           <ShaderTile elHref="/shaders/26" imageSrc={img26.src} number="26" />
+          <ShaderTile elHref="/shaders/25" imageSrc={img25.src} number="25" />
+          <ShaderTile elHref="/shaders/24" imageSrc={img24.src} number="24" />
+          <ShaderTile elHref="/shaders/23" imageSrc={img23.src} number="23" />
+          <ShaderTile elHref="/shaders/22" imageSrc={img22.src} number="22" />
+          <ShaderTile elHref="/shaders/21" imageSrc={img21.src} number="21" />
+          <ShaderTile elHref="/shaders/20" imageSrc={img20.src} number="20" />
+          <ShaderTile elHref="/shaders/19" imageSrc={img19.src} number="19" />
+          <ShaderTile elHref="/shaders/18" imageSrc={img18.src} number="18" />
+          <ShaderTile elHref="/shaders/17" imageSrc={img17.src} number="17" />
+          <ShaderTile elHref="/shaders/16" imageSrc={img16.src} number="16" />
+          <ShaderTile elHref="/shaders/15" imageSrc={img15.src} number="15" />
+          <ShaderTile elHref="/shaders/14" imageSrc={img14.src} number="14" />
+          <ShaderTile elHref="/shaders/13" imageSrc={img13.src} number="13" />
+          <ShaderTile elHref="/shaders/12" imageSrc={img12.src} number="12" />
+          <ShaderTile elHref="/shaders/11" imageSrc={img11.src} number="11" />
+          <ShaderTile elHref="/shaders/10" imageSrc={img10.src} number="10" />
+          <ShaderTile elHref="/shaders/9" imageSrc={img9.src} number="9" />
+          <ShaderTile elHref="/shaders/8" imageSrc={img8.src} number="8" />
+          <ShaderTile elHref="/shaders/7" imageSrc={img7.src} number="7" />
+          <ShaderTile elHref="/shaders/6" imageSrc={img6.src} number="6" />
+          <ShaderTile elHref="/shaders/5" imageSrc={img5.src} number="5" />
+          <ShaderTile elHref="/shaders/4" imageSrc={img4.src} number="4" />
+          <ShaderTile elHref="/shaders/3" imageSrc={img3.src} number="3" />
+          <ShaderTile elHref="/shaders/2" imageSrc={img2.src} number="2" />
+          <ShaderTile elHref="/shaders/1" imageSrc={img1.src} number="1" />
         </div>
       </div>
     </>
