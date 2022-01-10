@@ -100,13 +100,18 @@ vec2 randomPos(float speed, float radius){
     return vec2(sin(speed), cos(speed))* radius + 0.5  - 0.1 * random;
 }
 
+float semiCircle(float radius, vec2 st, vec2 position, float circlePercent, float rotation){
+    float angle = customAngle(st, position, circlePercent, rotation);
+    float ring1 = ring(radius, 0.001, position, st);
+    return ring1 *  step(0.0001,angle);
+}
+
 void main(){
     vec3 color = vec3(0.,0.,0.);
 
     vec3 ring1 = ring(0.02, 0.001, vec2(0.5), vUv) * blue3;
     vec3 ring2 = ring(0.2, 0.001, vec2(0.5), vUv) * blue3;
     vec3 ring3 = ring(0.3, 0.001, vec2(0.5), vUv) * blue2;
-    vec3 ring4 = ring(0.4, 0.002, vec2(0.5), vUv) * blue2;
     float movingL = movingLine(vUv, vec2(0.5), 0.4);
     float movingLStep = movingL * 2.5; //Used to highlight the red circles
     vec3 radar = movingL * blue3;
@@ -132,10 +137,24 @@ void main(){
     vec2 point5Pos = randomPos(-uTime * 0.37 - 0.4, 0.12);
     vec3 point5 = circle(0.005, vUv, point5Pos ) * blue1;
 
+    float semiTime = (0.5 * (sin(uTime* 1.) + 1.0));
+    float maxPercent = 0.45;
+    float minPercent = 0.25;
+    float difference = maxPercent - minPercent;
+
+    vec3 semiCircle1 = semiCircle(0.32, vUv, vec2(0.5), minPercent + difference * semiTime, minPercent * PI + PI * difference * semiTime)  * blue3;
+    vec3 semiCircle2 = semiCircle(0.32, vUv, vec2(0.5), minPercent + difference * semiTime, PI + minPercent * PI + PI * difference * semiTime)  * blue3;
+
+    semiTime = (0.5 * (sin(uTime * -1.2) + 1.0));
+    maxPercent = 0.5;
+    minPercent = 0.4;
+    difference = maxPercent - minPercent;
+    vec3 semiCircle3 = semiCircle(0.4, vUv, vec2(0.5), minPercent + difference * semiTime, -0.5 * PI + minPercent * PI + PI * difference * semiTime)  * blue2;
+    vec3 semiCircle4 = semiCircle(0.4, vUv, vec2(0.5), minPercent + difference * semiTime, 0.5 * PI + minPercent * PI + PI * difference * semiTime)  * blue2;
+
     color += ring1;
     color += ring2;
     color += ring3;
-    color += ring4;
     color += radar;
 
     color += redCircle;
@@ -145,5 +164,11 @@ void main(){
     color += point3;
     color += point4;
     color += point5;
+
+    color += semiCircle1;
+    color += semiCircle2;
+    color += semiCircle3;
+    color += semiCircle4;
+
     gl_FragColor = vec4(color, 1.0);
 }
