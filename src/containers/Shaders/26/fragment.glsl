@@ -14,7 +14,7 @@ varying vec2 vUv;
 #define blue2 vec3(0.87,0.98,1.00);
 #define blue3 vec3(0.35,0.76,0.83);
 #define blue4 vec3(0.953,0.969,0.89);
-#define red   vec3(1.00,0.38,0.227);
+#define red   vec3(1.00,0.08,0.007);
 
 
 mat2 rotate2d(float _angle){
@@ -35,6 +35,11 @@ float ring(float width, float strokeWidth, vec2 position, vec2 st){
     return 1.0 - step(strokeWidth, abs(distance(st, position) - (width - strokeWidth)));
 }
 
+float random(vec2 st)
+{
+    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+}
+
 
 float movingLine(vec2 uv, vec2 center, float radius)
 {
@@ -43,7 +48,7 @@ float movingLine(vec2 uv, vec2 center, float radius)
 
     //Translate uvs just to apply the rotation, then reset to default
     uv -= vec2(0.5);
-    uv = rotate2d( uTime * -2. ) * uv;
+    uv = rotate2d( uTime * -1. * 2.) * uv;
     uv += vec2(0.5);
 
     //Limit the radar rendering with negative space
@@ -54,6 +59,7 @@ float movingLine(vec2 uv, vec2 center, float radius)
     float line = step(0.5 , uv.x) * step(0.5 - lineWidth , uv.y) * step(0.5 - lineWidth ,1.- uv.y);
     float angle = atan(uv.x - 0.5, uv.y - 0.5) / (PI * 2.0) + 0.5;
     float strength = clamp(mod(angle * 4., 1.0) * glowStrength + line, 0.0, 1.0);
+
     return clamp(strength - negativeSpace, 0., 1.) ;
 }
 
@@ -65,13 +71,20 @@ void main()
     vec3 ring2 = ring(0.2, 0.001, vec2(0.5), vUv) * blue3;
     vec3 ring3 = ring(0.3, 0.001, vec2(0.5), vUv) * blue2;
     vec3 ring4 = ring(0.4, 0.002, vec2(0.5), vUv) * blue2;
-    vec3 radar = movingLine(vUv, vec2(0.5), 0.4) * blue3 ;
+    float movingL = movingLine(vUv, vec2(0.5), 0.4);
+    vec3 radar = movingL * blue3;
+
+    float randPos = floor(uTime* 2.);
+    float rad = 0.4;
+
+    vec3 redCircle = circle(0.02, vUv, vec2(sin(randPos  + 1.5)*rad + 0.5, cos(randPos + 1.5 )*rad + 0.5) ) * red ;
 
     color += ring1;
     color += ring2;
     color += ring3;
     color += ring4;
     color += radar;
+    color += redCircle;
 
     gl_FragColor = vec4(color, 1.0);
 }
