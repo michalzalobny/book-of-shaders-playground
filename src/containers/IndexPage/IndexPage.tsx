@@ -96,7 +96,8 @@ export default function IndexPage() {
           </div>
         </header>
         <div className={styles.tilesWrapper}>
-          <ShaderTile elHref="/shaders/32" imageSrc={img32.src} number="32" />
+          {/* <ShaderTile elHref="/shaders/33" imageSrc={img33.src} number="33" /> */}
+          <ShaderTile isMotion elHref="/shaders/32" imageSrc={img32.src} number="32" />
           <ShaderTile isMotion isPro elHref="/shaders/31" imageSrc={img31.src} number="31" />
           <ShaderTile elHref="/shaders/30" imageSrc={img30.src} number="30" />
           <ShaderTile elHref="/shaders/29" imageSrc={img29.src} number="29" />
