@@ -25,8 +25,8 @@ vec3 paintCircle (vec2 uv, vec2 center, float rad, float width) {
     vec2 diff = center-uv;
     float len = length(diff);
 
-    len += variation(diff, vec2(0.0, 1.0), 10.0, 10.0);
-    len -= variation(diff, vec2(1.0, 0.0), 10.0, 10.0);
+    len += variation(diff, vec2(0.0, 1.0), 4.0, 10.0);
+    len -= variation(diff, vec2(1.0, 0.0), 4.0, 10.0);
     
     float circle = smoothstep(rad-width, rad, len) - smoothstep(rad, rad+width, len);
     return vec3(circle);
@@ -60,7 +60,7 @@ void main()
     st += vec2(0.5);
 
     vec3 color;
-    float radius = 0.4;
+    float radius = 0.3;
     vec2 center = vec2(0.5);
 
     //paint color circle
