@@ -34,7 +34,7 @@ import img26 from 'assets/tileImages/26.jpg';
 import img27 from 'assets/tileImages/27.jpg';
 import img28 from 'assets/tileImages/28.jpg';
 import img29 from 'assets/tileImages/29.jpg';
-// import img30 from 'assets/tileImages/30.jpg';
+import img30 from 'assets/tileImages/30.jpg';
 // import img31 from 'assets/tileImages/31.jpg';
 // import img32 from 'assets/tileImages/32.jpg';
 // import img33 from 'assets/tileImages/33.jpg';
@@ -96,6 +96,7 @@ export default function IndexPage() {
           </div>
         </header>
         <div className={styles.tilesWrapper}>
+          <ShaderTile elHref="/shaders/30" imageSrc={img30.src} number="30" />
           <ShaderTile elHref="/shaders/29" imageSrc={img29.src} number="29" />
           <ShaderTile isMotion isPro elHref="/shaders/28" imageSrc={img28.src} number="28" />
           <ShaderTile elHref="/shaders/27" imageSrc={img27.src} number="27" />
