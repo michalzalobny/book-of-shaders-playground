@@ -1,3 +1,5 @@
+//Circle shader code from: https://www.shadertoy.com/view/ltBXRc (Created by phil)
+
 uniform float uTime;
 uniform vec2 uPlaneRes;
 uniform vec2 uCanvasRes;
