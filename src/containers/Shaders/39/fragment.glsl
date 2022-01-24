@@ -15,9 +15,8 @@ float random(vec2 st)
 
 void main()
 {
-    float r = (distance( vec2(vUv.x, (vUv.y -0.5) * 6.0 + 0.5), vec2(0.5)));
-
-    float color =  max(min(0.15 / r, 1.), 0.);
+    vec2 st = vUv;
+    float color = step(0.5 + sin(st.y * PI * 2.0) * 0.15, st.x);
 
     gl_FragColor = vec4(vec3(color), 1.0);
 }
