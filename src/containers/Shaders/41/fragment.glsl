@@ -18,16 +18,33 @@ float stroke (float x, float s, float w){
     return clamp(d, 0.0, 1.0);
 }
 
+float fill(float x, float size){
+    return 1. - step(size, x);
+}
+
+float circleSDF(vec2 st){
+    return length(st - 0.5) * 2.0;
+}
+
+float rectSDF(vec2 st, vec2 s){
+    st = st * 2.0 - 1.0;
+    return max( abs(st.x/s.x), abs(st.y/s.y));
+}
+
+float spiralSDF(vec2 st, float t){
+    st -= 0.5;
+    float r = dot(st,st  );
+    float a = atan(st.y, st.x);
+    return abs(sin(fract(log(r)* t + a * 0.159)));
+}
+
 void main()
 {
     vec2 st = vUv;
     float color;
 
-    float offset = cos(st.y * PI) * 0.15;
-
-    color += stroke(st.x, 0.395 + offset, 0.05);
-    color += stroke(st.x, 0.5 + offset, 0.05);
-    color += stroke(st.x, 0.605 + offset, 0.05);
+    color += step(0.5, spiralSDF(st, .13));
+    
 
     gl_FragColor = vec4(vec3(color), 1.0);
 }

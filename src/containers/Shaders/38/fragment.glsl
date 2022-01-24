@@ -43,7 +43,7 @@ float pattern( in vec2 p, out vec2 q, out vec2 r )
 void main()
 {
     vec3 gold = vec3(242.0 / 255.0 , 178.0 / 255.0 , 58.0 / 255.0 );
-    vec3 lightBlue = vec3(147.0 / 255.0 , 232.0 / 255.0 , 232.0 / 255.0 ) ;
+    vec3 lightBlue = vec3(83.0 / 255.0 , 227.0 / 255.0 , 252.0 / 255.0 ) ;
     vec3 blue = vec3(9.0 / 255.0 , 100.0 / 255.0 , 156.0 / 255.0 );
     vec3 darkBlue = vec3(7.0 / 255.0 , 33.0 / 255.0 , 60.0 / 255.0 );
     vec3 white = vec3(255.0 / 255.0 , 255.0 / 255.0 , 255.0 / 255.0 );
