@@ -12,7 +12,7 @@ varying vec2 vUv;
 
 void main()
 {
-    vec3 colorEnd =vec3(0.0 / 255.0 , 43.0 / 255.0 , 61.0 / 255.0 );
+    vec3 colorEnd =vec3(0.0 / 255.0 , 9.0 / 255.0 , 0.0 / 255.0 );
     vec3 colorStart = vec3(0.0 / 255.0 , 200.0 / 255.0 , 156.0 / 255.0 );
 
     // Displace the UV
