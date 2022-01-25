@@ -48,7 +48,7 @@ void main()
 
     for(float i = 0.0 ; i< NUM_EXPLOSIONS; i++) {
         float part = i / NUM_EXPLOSIONS;
-        float t = uTime * 0.8 + part;
+        float t = uTime * (part + 0.2) + part * 0.8;
         float ft = floor(t);
         vec3 colorValue = sin(vec3(.34 * part, .54 * (1.0 - part), 0.45) * ft) * 0.45 + 0.55;
         vec2 offset = Hash12(i + 1.0 + ft) - 0.5;
