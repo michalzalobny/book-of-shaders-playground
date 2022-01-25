@@ -9,8 +9,8 @@ uniform float uPixelRatio;
 varying vec2 vUv;
 
 #define PI 3.14159265359
-#define NUM_PARTICLES 50.0
-#define NUM_EXPLOSIONS 5.0
+#define NUM_PARTICLES 40.0
+#define NUM_EXPLOSIONS 4.0
 
 
 //random hashing function that takes one float and returns two (vec2)
@@ -52,7 +52,8 @@ void main()
         float ft = floor(t);
         vec3 colorValue = sin(vec3(.34 * part, .54 * (1.0 - part), 0.45) * ft) * 0.45 + 0.55;
         vec2 offset = Hash12(i + 1.0 + ft) - 0.5;
-        offset *= vec2(1.0, 1.0);
+        offset *= vec2(0.9, 0.25); //Shrink the possible explosion area
+        offset += vec2(0.0, 0.2); //Move the possible explosion area up
         color += explosion(st - offset, fract(t)) * colorValue;
     }
 
