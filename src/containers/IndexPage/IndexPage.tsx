@@ -47,6 +47,7 @@ import img39 from 'assets/tileImages/39.jpg';
 import img40 from 'assets/tileImages/40.jpg';
 import img41 from 'assets/tileImages/41.jpg';
 import img42 from 'assets/tileImages/42.jpg';
+import img43 from 'assets/tileImages/43.jpg';
 
 import styles from './IndexPage.module.scss';
 
@@ -101,6 +102,7 @@ export default function IndexPage() {
           </div>
         </header>
         <div className={styles.tilesWrapper}>
+          <ShaderTile isMotion isPro elHref="/shaders/43" imageSrc={img43.src} number="43" />
           <ShaderTile isMotion isPro elHref="/shaders/42" imageSrc={img42.src} number="42" />
           <ShaderTile elHref="/shaders/41" imageSrc={img41.src} number="41" />
           <ShaderTile elHref="/shaders/40" imageSrc={img40.src} number="40" />
