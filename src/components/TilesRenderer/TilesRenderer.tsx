@@ -1,10 +1,12 @@
 import React, { useRef, useState } from 'react';
 import clsx from 'clsx';
 import { AnimatePresence } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 import { ShaderTile } from 'components/ShaderTile/ShaderTile';
 import { Tile } from 'utils/sharedTypes';
 import sharedStyles from 'utils/sharedStyles.module.scss';
+import { tween } from 'components/Animations/framerTransitions';
 
 import styles from './TilesRenderer.module.scss';
 
@@ -53,6 +55,23 @@ import img42 from 'assets/tileImages/42.jpg';
 import img43 from 'assets/tileImages/43.jpg';
 import { useElementSize } from 'hooks/useElementSize';
 // import img44 from 'assets/tileImages/44.jpg';
+
+const wrapperV: Variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      ...tween,
+      //@ts-ignore
+      duration: 0.25,
+    },
+  },
+};
 
 export const TilesRenderer = () => {
   const tiles: Tile[] = [
@@ -371,9 +390,16 @@ export const TilesRenderer = () => {
           ></span>
         </div>
       </div>
-
-      <div className={styles.tilesWrapper}>
-        <AnimatePresence exitBeforeEnter>
+      <AnimatePresence exitBeforeEnter>
+        <motion.div
+          transition={tween}
+          variants={wrapperV}
+          key={mode}
+          animate="animate"
+          initial="initial"
+          exit="exit"
+          className={styles.tilesWrapper}
+        >
           {tiles.map(
             tile =>
               (mode === 'all' ||
@@ -389,8 +415,8 @@ export const TilesRenderer = () => {
                 />
               )
           )}
-        </AnimatePresence>
-      </div>
+        </motion.div>
+      </AnimatePresence>
     </>
   );
 };
