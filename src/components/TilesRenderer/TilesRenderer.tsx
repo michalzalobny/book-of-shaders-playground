@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import clsx from 'clsx';
+import { AnimatePresence } from 'framer-motion';
 
 import { ShaderTile } from 'components/ShaderTile/ShaderTile';
 import { Tile } from 'utils/sharedTypes';
@@ -369,21 +370,23 @@ export const TilesRenderer = () => {
         </div>
       </div>
       <div className={styles.tilesWrapper}>
-        {tiles.map(
-          tile =>
-            (mode === 'all' ||
-              (mode === 'pro' && tile.isPro) ||
-              (mode === 'motion' && tile.isMotion)) && (
-              <ShaderTile
-                key={tile.num}
-                isMotion={tile.isMotion}
-                isPro={tile.isPro}
-                elHref={`/shaders/${tile.num}`}
-                imageSrc={tile.imgSrc}
-                number={tile.num.toString()}
-              />
-            )
-        )}
+        <AnimatePresence exitBeforeEnter>
+          {tiles.map(
+            tile =>
+              (mode === 'all' ||
+                (mode === 'pro' && tile.isPro) ||
+                (mode === 'motion' && tile.isMotion)) && (
+                <ShaderTile
+                  key={tile.num + mode}
+                  isMotion={tile.isMotion}
+                  isPro={tile.isPro}
+                  elHref={`/shaders/${tile.num}`}
+                  imageSrc={tile.imgSrc}
+                  number={tile.num.toString()}
+                />
+              )
+          )}
+        </AnimatePresence>
       </div>
     </>
   );
