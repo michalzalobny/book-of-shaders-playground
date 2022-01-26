@@ -1,6 +1,6 @@
 .codeWrapper {
   position: fixed;
-  z-index: 5;
+  z-index: 10;
   top: 20px;
   right: 40px;
   display: flex;
@@ -9,7 +9,7 @@
 
 .backWrapper {
   position: fixed;
-  z-index: 5;
+  z-index: 10;
   top: 20px;
   left: 40px;
   display: flex;
