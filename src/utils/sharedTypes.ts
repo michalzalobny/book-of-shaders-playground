@@ -14,3 +14,10 @@ export interface Bounds {
 }
 
 export type ViewMode = 'fragment' | 'vertex' | 'none';
+
+export interface Tile {
+  num: number;
+  isPro: boolean;
+  imgSrc: string;
+  isMotion: boolean;
+}

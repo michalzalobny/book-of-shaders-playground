@@ -1,0 +1,18 @@
+.tilesWrapper {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;
+  margin-bottom: 8rem;
+
+  @media screen and (min-width: 767px) {
+    grid-gap: 2rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 15rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    grid-gap: 4rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
