@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { AnimatePresence } from 'framer-motion';
 import { motion, Variants } from 'framer-motion';
+import { useRouter } from 'next/router';
 
 import { ShaderTile } from 'components/ShaderTile/ShaderTile';
 import { Tile } from 'utils/sharedTypes';
@@ -335,8 +336,9 @@ export const TilesRenderer = () => {
     },
   ];
 
+  const router = useRouter();
   type Mode = 'all' | 'pro' | 'motion';
-  const [mode, setMode] = useState<Mode>('all');
+  const [mode, setMode] = useState<Mode>((router.query.filter as Mode) || 'all');
 
   const allBtnRef = useRef(null);
   const proBtnRef = useRef(null);
@@ -345,6 +347,10 @@ export const TilesRenderer = () => {
   const allBtnSize = useElementSize(allBtnRef);
   const proBtnSize = useElementSize(proBtnRef);
   const motionBtnSize = useElementSize(motionBtnRef);
+
+  useEffect(() => {
+    setMode(router.query.filter as Mode);
+  }, [router]);
 
   return (
     <>
@@ -360,15 +366,33 @@ export const TilesRenderer = () => {
         <p className={clsx(sharedStyles.text, sharedStyles.textBlack)}>filter: </p>
 
         <div className={styles.buttonsWrapper}>
-          <button ref={allBtnRef} onClick={() => setMode('all')} className={styles.filterBtn}>
+          <button
+            ref={allBtnRef}
+            onClick={() => {
+              router.replace('?filter=all');
+            }}
+            className={styles.filterBtn}
+          >
             <span className={clsx(sharedStyles.text, sharedStyles.textBlack)}>All</span>
           </button>
 
-          <button ref={proBtnRef} onClick={() => setMode('pro')} className={styles.filterBtn}>
+          <button
+            ref={proBtnRef}
+            onClick={() => {
+              router.replace('?filter=pro');
+            }}
+            className={styles.filterBtn}
+          >
             <span className={clsx(sharedStyles.text, sharedStyles.textBlack)}>Pro</span>
           </button>
 
-          <button ref={motionBtnRef} onClick={() => setMode('motion')} className={styles.filterBtn}>
+          <button
+            ref={motionBtnRef}
+            onClick={() => {
+              router.replace('?filter=motion');
+            }}
+            className={styles.filterBtn}
+          >
             <span className={clsx(sharedStyles.text, sharedStyles.textBlack)}>Motion</span>
           </button>
           <span
