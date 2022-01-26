@@ -356,15 +356,7 @@ export const TilesRenderer = () => {
 
   return (
     <>
-      <div
-        className={clsx(
-          styles.filterWrapper,
-          allBtnSize.size.isReady &&
-            proBtnSize.size.isReady &&
-            motionBtnSize.size.isReady &&
-            styles.filterWrapperReady
-        )}
-      >
+      <div className={styles.filterWrapper}>
         <p className={clsx(sharedStyles.text, sharedStyles.textBlack)}>filter: </p>
 
         <div className={styles.buttonsWrapper}>
@@ -400,10 +392,13 @@ export const TilesRenderer = () => {
           <span
             style={{
               width:
-                (mode === 'all' && allBtnSize.size.clientRect.width) ||
-                (mode === 'pro' && proBtnSize.size.clientRect.width) ||
-                (mode === 'motion' && motionBtnSize.size.clientRect.width) ||
-                1,
+                allBtnSize.size.isReady && proBtnSize.size.isReady && motionBtnSize.size.isReady
+                  ? (mode === 'all' && allBtnSize.size.clientRect.width) ||
+                    (mode === 'pro' && proBtnSize.size.clientRect.width) ||
+                    (mode === 'motion' && motionBtnSize.size.clientRect.width) ||
+                    1
+                  : 51.95,
+
               transform:
                 (mode === 'pro' && `translateX(${allBtnSize.size.clientRect.width + 10}px)`) ||
                 (mode === 'motion' &&

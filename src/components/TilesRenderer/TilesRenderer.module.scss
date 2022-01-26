@@ -21,12 +21,6 @@
   margin-top: 2rem;
   display: flex;
   align-items: center;
-  transition: opacity 0.5s 0.5s cubic-bezier(0.64, 0.02, 0.16, 0.97);
-  opacity: 0;
-
-  &Ready {
-    opacity: 1;
-  }
 }
 
 .filterBtn {
