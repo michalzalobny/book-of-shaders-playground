@@ -340,10 +340,6 @@ export const TilesRenderer = () => {
   type Mode = 'all' | 'pro' | 'motion';
   const [mode, setMode] = useState<Mode>((router.query.filter as Mode) || 'all');
 
-  useEffect(() => {
-    console.log(router.query.filter);
-  }, [router.query]);
-
   const allBtnRef = useRef(null);
   const proBtnRef = useRef(null);
   const motionBtnRef = useRef(null);
