@@ -340,6 +340,10 @@ export const TilesRenderer = () => {
   type Mode = 'all' | 'pro' | 'motion';
   const [mode, setMode] = useState<Mode>((router.query.filter as Mode) || 'all');
 
+  useEffect(() => {
+    console.log(router.query.filter);
+  }, [router.query]);
+
   const allBtnRef = useRef(null);
   const proBtnRef = useRef(null);
   const motionBtnRef = useRef(null);
@@ -349,7 +353,9 @@ export const TilesRenderer = () => {
   const motionBtnSize = useElementSize(motionBtnRef);
 
   useEffect(() => {
-    setMode(router.query.filter as Mode);
+    if (router.query.filter) {
+      setMode(router.query.filter as Mode);
+    }
   }, [router]);
 
   return (
