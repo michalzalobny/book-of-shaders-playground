@@ -55,14 +55,14 @@ export const TilesRenderer = () => {
     {
       num: 43,
       imgSrc: img43.src,
-      isPro: false,
-      isMotion: false,
+      isPro: true,
+      isMotion: true,
     },
     {
       num: 42,
       imgSrc: img42.src,
-      isPro: false,
-      isMotion: false,
+      isPro: true,
+      isMotion: true,
     },
     {
       num: 41,
@@ -85,50 +85,50 @@ export const TilesRenderer = () => {
     {
       num: 38,
       imgSrc: img38.src,
-      isPro: false,
-      isMotion: false,
+      isPro: true,
+      isMotion: true,
     },
     {
       num: 37,
       imgSrc: img37.src,
       isPro: false,
-      isMotion: false,
+      isMotion: true,
     },
     {
       num: 36,
       imgSrc: img36.src,
       isPro: false,
-      isMotion: false,
+      isMotion: true,
     },
     {
       num: 35,
       imgSrc: img35.src,
       isPro: false,
-      isMotion: false,
+      isMotion: true,
     },
     {
       num: 34,
       imgSrc: img34.src,
       isPro: false,
-      isMotion: false,
+      isMotion: true,
     },
     {
       num: 33,
       imgSrc: img33.src,
       isPro: false,
-      isMotion: false,
+      isMotion: true,
     },
     {
       num: 32,
       imgSrc: img32.src,
       isPro: false,
-      isMotion: false,
+      isMotion: true,
     },
     {
       num: 31,
       imgSrc: img31.src,
-      isPro: false,
-      isMotion: false,
+      isPro: true,
+      isMotion: true,
     },
     {
       num: 30,
@@ -145,8 +145,8 @@ export const TilesRenderer = () => {
     {
       num: 28,
       imgSrc: img28.src,
-      isPro: false,
-      isMotion: false,
+      isPro: true,
+      isMotion: true,
     },
     {
       num: 27,
@@ -157,20 +157,20 @@ export const TilesRenderer = () => {
     {
       num: 26,
       imgSrc: img26.src,
-      isPro: false,
-      isMotion: false,
+      isPro: true,
+      isMotion: true,
     },
     {
       num: 25,
       imgSrc: img25.src,
       isPro: false,
-      isMotion: false,
+      isMotion: true,
     },
     {
       num: 24,
       imgSrc: img24.src,
       isPro: false,
-      isMotion: false,
+      isMotion: true,
     },
     {
       num: 23,
@@ -182,7 +182,7 @@ export const TilesRenderer = () => {
       num: 22,
       imgSrc: img22.src,
       isPro: false,
-      isMotion: false,
+      isMotion: true,
     },
     {
       num: 21,
@@ -200,7 +200,7 @@ export const TilesRenderer = () => {
       num: 19,
       imgSrc: img19.src,
       isPro: false,
-      isMotion: false,
+      isMotion: true,
     },
     {
       num: 18,
@@ -241,7 +241,7 @@ export const TilesRenderer = () => {
     {
       num: 12,
       imgSrc: img12.src,
-      isPro: false,
+      isPro: true,
       isMotion: false,
     },
     {
@@ -260,7 +260,7 @@ export const TilesRenderer = () => {
       num: 9,
       imgSrc: img9.src,
       isPro: false,
-      isMotion: false,
+      isMotion: true,
     },
     {
       num: 8,
@@ -302,13 +302,13 @@ export const TilesRenderer = () => {
       num: 2,
       imgSrc: img2.src,
       isPro: false,
-      isMotion: false,
+      isMotion: true,
     },
     {
       num: 1,
       imgSrc: img1.src,
       isPro: false,
-      isMotion: false,
+      isMotion: true,
     },
   ];
 
