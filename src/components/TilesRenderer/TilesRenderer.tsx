@@ -430,7 +430,7 @@ export const TilesRenderer = () => {
                 (mode === 'pro' && tile.isPro) ||
                 (mode === 'motion' && tile.isMotion)) && (
                 <ShaderTile
-                  key={tile.num + mode}
+                  key={tile.num}
                   isMotion={tile.isMotion}
                   isPro={tile.isPro}
                   elHref={`/shaders/${tile.num}`}
