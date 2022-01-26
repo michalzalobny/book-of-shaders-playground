@@ -16,3 +16,47 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
+
+.filterWrapper {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.filterBtn {
+  padding: 6px 18px;
+  cursor: pointer;
+
+  &:not(:first-child) {
+    margin-left: 10px;
+  }
+}
+
+.floatingBorder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 90px;
+  border: 2px solid var(--black);
+  border-radius: 15px;
+  user-select: none;
+  pointer-events: none;
+  transition-property: width, transform, opacity;
+  transition-timing-function: cubic-bezier(0.64, 0.02, 0.16, 0.97);
+  transition-duration: 0.4s;
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.64, 0.02, 0.16, 0.97),
+    width 0.4s cubic-bezier(0.64, 0.02, 0.16, 0.97), opacity 0.45s 0.4s;
+
+  &Ready {
+    opacity: 1;
+  }
+}
+
+.buttonsWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-left: 10px;
+}

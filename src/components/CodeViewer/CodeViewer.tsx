@@ -20,8 +20,13 @@ export const CodeViewer = (props: Props) => {
 
   return (
     <>
-      <div className={styles.codeBtnWrapper} onClick={() => setViewMode('fragment')}>
-        <span className={clsx(sharedStyles.text, sharedStyles.textBox)}>View code</span>
+      <div className={styles.codeBtnWrapper}>
+        <button
+          onClick={() => setViewMode('fragment')}
+          className={clsx(sharedStyles.text, sharedStyles.textBox)}
+        >
+          View code
+        </button>
       </div>
       <div
         onClick={() => setViewMode('none')}
@@ -35,21 +40,21 @@ export const CodeViewer = (props: Props) => {
         )}
       >
         <div className={styles.buttonsWrapper}>
-          <span
+          <button
             onClick={() => setViewMode('fragment')}
             className={clsx(sharedStyles.text, sharedStyles.textBox)}
           >
             Fragment shader
-          </span>
+          </button>
 
           <span className={styles.buttonsWrapperSpacer}></span>
 
-          <span
+          <button
             onClick={() => setViewMode('vertex')}
             className={clsx(sharedStyles.text, sharedStyles.textBox)}
           >
             Vertex shader
-          </span>
+          </button>
         </div>
 
         <div

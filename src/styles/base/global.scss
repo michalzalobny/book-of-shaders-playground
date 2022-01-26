@@ -34,6 +34,10 @@ html {
   }
 }
 
+body {
+  overflow-y: scroll;
+}
+
 a {
   color: inherit;
   pointer-events: auto;

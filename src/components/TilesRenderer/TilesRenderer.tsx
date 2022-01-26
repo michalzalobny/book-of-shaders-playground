@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import clsx from 'clsx';
 
 import { ShaderTile } from 'components/ShaderTile/ShaderTile';
 import { Tile } from 'utils/sharedTypes';
+import sharedStyles from 'utils/sharedStyles.module.scss';
 
 import styles from './TilesRenderer.module.scss';
 
@@ -48,6 +50,7 @@ import img40 from 'assets/tileImages/40.jpg';
 import img41 from 'assets/tileImages/41.jpg';
 import img42 from 'assets/tileImages/42.jpg';
 import img43 from 'assets/tileImages/43.jpg';
+import { useElementSize } from 'hooks/useElementSize';
 // import img44 from 'assets/tileImages/44.jpg';
 
 export const TilesRenderer = () => {
@@ -312,19 +315,75 @@ export const TilesRenderer = () => {
     },
   ];
 
+  type Mode = 'all' | 'pro' | 'motion';
+  const [mode, setMode] = useState<Mode>('all');
+
+  const allBtnRef = useRef(null);
+  const proBtnRef = useRef(null);
+  const motionBtnRef = useRef(null);
+
+  const allBtnSize = useElementSize(allBtnRef);
+  const proBtnSize = useElementSize(proBtnRef);
+  const motionBtnSize = useElementSize(motionBtnRef);
+
   return (
     <>
+      <div className={styles.filterWrapper}>
+        <p className={clsx(sharedStyles.text, sharedStyles.textBlack)}>filter: </p>
+
+        <div className={styles.buttonsWrapper}>
+          <button ref={allBtnRef} onClick={() => setMode('all')} className={styles.filterBtn}>
+            <span className={clsx(sharedStyles.text, sharedStyles.textBlack)}>All</span>
+          </button>
+
+          <button ref={proBtnRef} onClick={() => setMode('pro')} className={styles.filterBtn}>
+            <span className={clsx(sharedStyles.text, sharedStyles.textBlack)}>Pro</span>
+          </button>
+
+          <button ref={motionBtnRef} onClick={() => setMode('motion')} className={styles.filterBtn}>
+            <span className={clsx(sharedStyles.text, sharedStyles.textBlack)}>Motion</span>
+          </button>
+          <span
+            style={{
+              width:
+                (mode === 'all' && allBtnSize.size.clientRect.width) ||
+                (mode === 'pro' && proBtnSize.size.clientRect.width) ||
+                (mode === 'motion' && motionBtnSize.size.clientRect.width) ||
+                1,
+              transform:
+                (mode === 'pro' && `translateX(${allBtnSize.size.clientRect.width + 10}px)`) ||
+                (mode === 'motion' &&
+                  `translateX(${
+                    allBtnSize.size.clientRect.width + proBtnSize.size.clientRect.width + 10 + 10
+                  }px)`) ||
+                'translateX(0)',
+            }}
+            className={clsx(
+              styles.floatingBorder,
+              allBtnSize.size.isReady &&
+                proBtnSize.size.isReady &&
+                motionBtnSize.size.isReady &&
+                styles.floatingBorderReady
+            )}
+          ></span>
+        </div>
+      </div>
       <div className={styles.tilesWrapper}>
-        {tiles.map(tile => (
-          <ShaderTile
-            key={tile.num}
-            isMotion={tile.isMotion}
-            isPro={tile.isPro}
-            elHref={`/shaders/${tile.num}`}
-            imageSrc={tile.imgSrc}
-            number={tile.num.toString()}
-          />
-        ))}
+        {tiles.map(
+          tile =>
+            (mode === 'all' ||
+              (mode === 'pro' && tile.isPro) ||
+              (mode === 'motion' && tile.isMotion)) && (
+              <ShaderTile
+                key={tile.num}
+                isMotion={tile.isMotion}
+                isPro={tile.isPro}
+                elHref={`/shaders/${tile.num}`}
+                imageSrc={tile.imgSrc}
+                number={tile.num.toString()}
+              />
+            )
+        )}
       </div>
     </>
   );
