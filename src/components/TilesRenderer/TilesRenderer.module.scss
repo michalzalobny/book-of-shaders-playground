@@ -48,9 +48,8 @@
   border-radius: 15px;
   user-select: none;
   pointer-events: none;
-  transition-property: width, transform;
-  transition-timing-function: cubic-bezier(0.64, 0.02, 0.16, 0.97);
-  transition-duration: 0.65s;
+  transition: width 0.65s cubic-bezier(0.64, 0.02, 0.16, 0.97),
+    transform 0.65s cubic-bezier(0.64, 0.02, 0.16, 0.97);
 }
 
 .buttonsWrapper {
