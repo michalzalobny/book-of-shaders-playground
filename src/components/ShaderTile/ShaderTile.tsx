@@ -1,9 +1,10 @@
 import React from 'react';
 import clsx from 'clsx';
-import { motion, Transition, Variants } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 import { LinkHandler } from 'components/LinkHandler/LinkHandler';
 import { PreloadImage } from 'components/PreloadImage/PreloadImage';
+import { tween } from 'components/Animations/framerTransitions';
 
 import styles from './ShaderTile.module.scss';
 
@@ -25,14 +26,9 @@ const shaderTileV: Variants = {
   exit: {
     opacity: 0,
     transition: {
-      duration: 0.2,
+      ...tween,
     },
   },
-};
-
-const shaderTileT: Transition = {
-  type: 'tween',
-  duration: 0.4,
 };
 
 export const ShaderTile = (props: Props) => {
@@ -41,7 +37,7 @@ export const ShaderTile = (props: Props) => {
   return (
     <>
       <motion.div
-        transition={shaderTileT}
+        transition={tween}
         variants={shaderTileV}
         animate="animate"
         initial="initial"
