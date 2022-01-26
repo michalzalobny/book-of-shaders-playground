@@ -21,6 +21,12 @@
   margin-top: 2rem;
   display: flex;
   align-items: center;
+  transition: opacity 0.5s 0.5s cubic-bezier(0.64, 0.02, 0.16, 0.97);
+  opacity: 0;
+
+  &Ready {
+    opacity: 1;
+  }
 }
 
 .filterBtn {
@@ -42,16 +48,9 @@
   border-radius: 15px;
   user-select: none;
   pointer-events: none;
-  transition-property: width, transform, opacity;
+  transition-property: width, transform;
   transition-timing-function: cubic-bezier(0.64, 0.02, 0.16, 0.97);
-  transition-duration: 0.4s;
-  opacity: 0;
-  transition: transform 0.4s cubic-bezier(0.64, 0.02, 0.16, 0.97),
-    width 0.4s cubic-bezier(0.64, 0.02, 0.16, 0.97), opacity 0.45s 0.4s;
-
-  &Ready {
-    opacity: 1;
-  }
+  transition-duration: 0.65s;
 }
 
 .buttonsWrapper {

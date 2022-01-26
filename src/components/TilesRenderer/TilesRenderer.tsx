@@ -329,7 +329,15 @@ export const TilesRenderer = () => {
 
   return (
     <>
-      <div className={styles.filterWrapper}>
+      <div
+        className={clsx(
+          styles.filterWrapper,
+          allBtnSize.size.isReady &&
+            proBtnSize.size.isReady &&
+            motionBtnSize.size.isReady &&
+            styles.filterWrapperReady
+        )}
+      >
         <p className={clsx(sharedStyles.text, sharedStyles.textBlack)}>filter: </p>
 
         <div className={styles.buttonsWrapper}>
@@ -359,16 +367,11 @@ export const TilesRenderer = () => {
                   }px)`) ||
                 'translateX(0)',
             }}
-            className={clsx(
-              styles.floatingBorder,
-              allBtnSize.size.isReady &&
-                proBtnSize.size.isReady &&
-                motionBtnSize.size.isReady &&
-                styles.floatingBorderReady
-            )}
+            className={styles.floatingBorder}
           ></span>
         </div>
       </div>
+
       <div className={styles.tilesWrapper}>
         <AnimatePresence exitBeforeEnter>
           {tiles.map(
