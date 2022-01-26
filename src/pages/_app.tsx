@@ -16,14 +16,14 @@ export default function MyApp(props: AppProps) {
   useEffect(() => {
     const fontA = new FontFaceObserver('opensans');
 
-    Promise.all([fontA.load(null, 1000)])
+    Promise.all([fontA.load(null, 1500)])
       .then(
         () => {
           setIsReady(true);
         },
         () => {
           setIsReady(true);
-          console.warn('Fonts were loading too long (over 1000ms)');
+          console.warn('Fonts were loading too long (over 1500ms)');
         }
       )
       .catch(err => {
