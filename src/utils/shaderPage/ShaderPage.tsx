@@ -62,7 +62,7 @@ export default function Page(props: ShaderPageProps) {
       />
 
       <div className={styles.backWrapper}>
-        <LinkHandler elHref="/">
+        <LinkHandler onClickFn={() => router.back()}>
           <span className={clsx(sharedStyles.text, sharedStyles.textBox)}>Back</span>
         </LinkHandler>
       </div>

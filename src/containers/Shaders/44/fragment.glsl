@@ -8,16 +8,18 @@ varying vec2 vUv;
 
 #define PI 3.14159265359
 
-float random(vec2 st)
-{
-    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+struct ray {
+    vec3 o, d; //structure of vector with origin and direction
+}
+
+ray GetRay(vec2 uv, vec3 camPost, vec3 lookAt, float zoom){
+    
 }
 
 void main()
 {
-    float r = (distance( vec2(vUv.x, (vUv.y -0.5) * 6.0 + 0.5), vec2(0.5)));
-
-    float color =  max(min(0.15 / r, 1.), 0.);
+    vec3 campPos = vec3(0.0, 0.2, 0.0);
+    vec3 lookAt = vec3(0.0, 0.2, 1.0);
 
     gl_FragColor = vec4(vec3(color), 1.0);
 }
