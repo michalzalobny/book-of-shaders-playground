@@ -1,5 +1,4 @@
 .wrapper {
-  perspective: 300px;
   position: relative;
   background: var(--white);
   border-radius: 10px;
@@ -15,7 +14,7 @@
   }
 
   [data-card='2'] {
-    transform: translate(-50%, -50%) rotateY(180deg) scale(1);
+    transform: rotateY(180deg) scale(1);
     z-index: 2;
   }
 
@@ -23,28 +22,38 @@
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
 
     [data-card='1'] {
-      transform: translate(-50%, -50%) rotateY(-180deg) scale(0.5);
+      transform: rotateY(-180deg) scale(0.6);
     }
 
     [data-card='2'] {
-      transform: translate(-50%, -50%) rotateY(0deg) scale(0.5);
+      transform: rotateY(0deg) scale(0.6);
     }
   }
 }
 
 .imageWrapper {
   border-radius: 10px;
-  overflow: hidden;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotateY(0deg) scale(1);
-  width: 80%;
-  height: 80%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
   transition: transform 0.8s;
   transition-timing-function: cubic-bezier(0.24, 0.05, 0.16, 0.97);
   backface-visibility: hidden;
+  transform: rotateY(0deg) scale(1);
   z-index: 1;
+}
+
+.imagesContainer {
+  perspective: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
 }
 
 .numberWrapper {
@@ -75,7 +84,7 @@
 
 .badgesWrapper {
   position: absolute;
-  z-index: 3;
+  z-index: 30;
   right: 0;
   bottom: 15%;
   display: flex;

@@ -28,12 +28,13 @@ export const ShaderTile = (props: Props) => {
           <div className={styles.numberWrapper}>
             <span className={styles.number}>{number}</span>
           </div>
-          <div data-card="1" className={styles.imageWrapper}>
-            <PreloadImage imageSrc={imageSrc} alt={number} />
-          </div>
-
-          <div data-card="2" className={styles.imageWrapper}>
-            <PreloadImage imageSrc={imageSrc} alt={number} />
+          <div className={styles.imagesContainer}>
+            <div data-card="1" className={styles.imageWrapper}>
+              <PreloadImage imageSrc={imageSrc} alt={number} />
+            </div>
+            <div data-card="2" className={styles.imageWrapper}>
+              <PreloadImage imageSrc={imageSrc} alt={number} />
+            </div>
           </div>
         </div>
       </LinkHandler>
