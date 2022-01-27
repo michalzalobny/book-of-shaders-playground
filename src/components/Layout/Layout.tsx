@@ -9,10 +9,11 @@ import styles from './Layout.module.scss';
 
 interface Props {
   isReady: boolean;
+  children: React.ReactChild;
 }
 
 export const Layout = (props: Props) => {
-  const { isReady } = props;
+  const { children, isReady } = props;
 
   const router = useRouter();
 
@@ -52,6 +53,7 @@ export const Layout = (props: Props) => {
           </LinkHandler>
         </div>
       )}
+      {isReady && children}
     </>
   );
 };

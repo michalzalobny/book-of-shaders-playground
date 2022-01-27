@@ -34,8 +34,9 @@ export default function MyApp(props: AppProps) {
 
   return (
     <>
-      <Layout isReady={isReady} />
-      <Component key={router.route + router.locale} router={router} {...pageProps} />
+      <Layout isReady={isReady}>
+        <Component key={router.route + router.locale} router={router} {...pageProps} />
+      </Layout>
     </>
   );
 }

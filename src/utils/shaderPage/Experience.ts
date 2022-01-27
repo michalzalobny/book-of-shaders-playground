@@ -1,4 +1,5 @@
 import TWEEN from '@tweenjs/tween.js';
+import React from 'react';
 import * as THREE from 'three';
 import debounce from 'lodash/debounce';
 import { OrbitControls } from 'three-stdlib';
@@ -13,6 +14,7 @@ interface Constructor {
   rendererEl: HTMLDivElement;
   fragmentShader: string;
   vertexShader: string;
+  setShouldUncover: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export class Experience extends THREE.EventDispatcher {
@@ -39,8 +41,9 @@ export class Experience extends THREE.EventDispatcher {
   _coords2D = new Coords2D();
   _dpr = 1;
   _uvTexts: Text[] = [];
+  _setShouldUncoverReact: React.Dispatch<React.SetStateAction<boolean>>;
 
-  constructor({ fragmentShader, vertexShader, rendererEl }: Constructor) {
+  constructor({ setShouldUncover, fragmentShader, vertexShader, rendererEl }: Constructor) {
     super();
     this._rendererEl = rendererEl;
     this._canvas = document.createElement('canvas');
@@ -55,6 +58,8 @@ export class Experience extends THREE.EventDispatcher {
       antialias: true,
       alpha: true,
     });
+
+    this._setShouldUncoverReact = setShouldUncover;
 
     this._renderer.outputEncoding = THREE.sRGBEncoding;
     this._preloadFont();
@@ -85,6 +90,7 @@ export class Experience extends THREE.EventDispatcher {
     this._addPlane();
     this._addTexts();
     this._updatePlaneScale();
+    this._setShouldUncoverReact(true);
   }
 
   _onResizeDebounced = debounce(() => this._onResize(), 300);

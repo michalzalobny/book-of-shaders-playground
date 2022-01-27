@@ -21,10 +21,6 @@ export default function Page(props: ShaderPageProps) {
 
   const [shaderNumber, setShaderNumber] = useState('');
 
-  useEffect(() => {
-    setShouldUncover(true);
-  }, [shouldUncover]);
-
   //Get shader number from the pathnem to later pass it to github link
   useEffect(() => {
     const paramNumber = router.pathname.replace('/shaders/', '');
@@ -37,6 +33,7 @@ export default function Page(props: ShaderPageProps) {
       rendererEl: rendererEl.current,
       fragmentShader,
       vertexShader,
+      setShouldUncover,
     });
     return () => {
       experience.destroy();
@@ -78,9 +75,7 @@ export default function Page(props: ShaderPageProps) {
 
       <div className={styles.numberWrapper}>
         <div className={styles.numberContainer}>
-          <div className={clsx(styles.number, shaderNumber !== '' && styles.numberReady)}>
-            {shaderNumber}
-          </div>
+          <div className={styles.number}>{shaderNumber}</div>
         </div>
       </div>
     </>
