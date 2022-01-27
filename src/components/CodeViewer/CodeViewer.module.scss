@@ -52,10 +52,12 @@
   background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: saturate(180%) blur(8px);
 
-  &Hidden {
-    pointer-events: none;
-    user-select: none;
-    opacity: 0;
+  pointer-events: none;
+  user-select: none;
+
+  &Opened {
+    pointer-events: initial;
+    user-select: initial;
   }
 }
 
@@ -97,14 +99,16 @@
   transform: translateX(-50%);
   opacity: 1;
 
+  pointer-events: none;
+  user-select: none;
+
+  &Opened {
+    pointer-events: initial;
+    user-select: initial;
+  }
+
   @media screen and (min-width: 767px) {
     top: 120px;
     width: 100rem;
-  }
-
-  &Hidden {
-    pointer-events: none;
-    user-select: none;
-    opacity: 0;
   }
 }

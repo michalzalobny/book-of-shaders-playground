@@ -20,13 +20,9 @@ interface Props {
 const backgroundV: Variants = {
   initial: {
     opacity: 0,
-    pointerEvents: 'none',
-    userSelect: 'none',
   },
   animate: {
     opacity: 1,
-    pointerEvents: 'initial',
-    userSelect: 'initial',
   },
   exit: {
     opacity: 0,
@@ -38,13 +34,9 @@ const backgroundV: Variants = {
 const containersWrapperV: Variants = {
   initial: {
     opacity: 0,
-    pointerEvents: 'none',
-    userSelect: 'none',
   },
   animate: {
     opacity: 1,
-    pointerEvents: 'initial',
-    userSelect: 'initial',
   },
   exit: {
     opacity: 0,
@@ -75,7 +67,10 @@ export const CodeViewer = (props: Props) => {
             exit="exit"
             variants={backgroundV}
             onClick={() => setViewMode('none')}
-            className={styles.background}
+            className={clsx(
+              styles.background,
+              (viewMode === 'vertex' || viewMode === 'fragment') && styles.backgroundOpened
+            )}
           />
         )}
       </AnimatePresence>
@@ -88,7 +83,10 @@ export const CodeViewer = (props: Props) => {
             initial="initial"
             exit="exit"
             variants={containersWrapperV}
-            className={styles.containersWrapper}
+            className={clsx(
+              styles.containersWrapper,
+              (viewMode === 'vertex' || viewMode === 'fragment') && styles.containersWrapperOpened
+            )}
           >
             <div className={styles.buttonsWrapper}>
               <button
