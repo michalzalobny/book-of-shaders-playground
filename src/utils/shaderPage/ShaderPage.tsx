@@ -8,6 +8,7 @@ import { Head } from 'seo/Head/Head';
 import { ShaderPageProps, ViewMode } from 'utils/sharedTypes';
 import { Experience } from 'utils/shaderPage/Experience';
 import sharedStyles from 'utils/sharedStyles.module.scss';
+import { globalState } from 'utils/globalState';
 
 import styles from './ShaderPage.module.scss';
 
@@ -59,7 +60,15 @@ export default function Page(props: ShaderPageProps) {
       />
 
       <div className={styles.backWrapper}>
-        <LinkHandler onClickFn={() => router.back()}>
+        <LinkHandler
+          onClickFn={() => {
+            if (globalState.hasVisitedLanding) {
+              router.back();
+            } else {
+              router.push('/');
+            }
+          }}
+        >
           <span className={clsx(sharedStyles.text, sharedStyles.textBox)}>Back</span>
         </LinkHandler>
       </div>

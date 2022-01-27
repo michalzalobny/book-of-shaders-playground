@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 
 import { Head } from 'seo/Head/Head';
 import { LinkHandler } from 'components/LinkHandler/LinkHandler';
-
+import { TilesRenderer } from 'components/TilesRenderer/TilesRenderer';
 import sharedStyles from 'utils/sharedStyles.module.scss';
+import { globalState } from 'utils/globalState';
 
 import styles from './IndexPage.module.scss';
-import { TilesRenderer } from 'components/TilesRenderer/TilesRenderer';
 
 export default function IndexPage() {
+  //Marks that the user has visited landing, and can use the back button on the shader subpage
+  useEffect(() => {
+    if (globalState.hasVisitedLanding) return;
+    globalState.hasVisitedLanding = true;
+  }, []);
+
   return (
     <>
       <Head />
