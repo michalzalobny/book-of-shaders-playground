@@ -8,6 +8,7 @@ import { ShaderTile } from 'components/ShaderTile/ShaderTile';
 import { Tile } from 'utils/sharedTypes';
 import sharedStyles from 'utils/sharedStyles.module.scss';
 import { tween } from 'components/Animations/framerTransitions';
+import { useElementSize } from 'hooks/useElementSize';
 
 import styles from './TilesRenderer.module.scss';
 
@@ -54,8 +55,7 @@ import img40 from 'assets/tileImages/40.jpg';
 import img41 from 'assets/tileImages/41.jpg';
 import img42 from 'assets/tileImages/42.jpg';
 import img43 from 'assets/tileImages/43.jpg';
-import { useElementSize } from 'hooks/useElementSize';
-// import img44 from 'assets/tileImages/44.jpg';
+import img44 from 'assets/tileImages/44.jpg';
 
 const wrapperV: Variants = {
   initial: {
@@ -76,6 +76,12 @@ const wrapperV: Variants = {
 
 export const TilesRenderer = () => {
   const tiles: Tile[] = [
+    {
+      num: 44,
+      imgSrc: img44.src,
+      isPro: false,
+      isMotion: true,
+    },
     {
       num: 43,
       imgSrc: img43.src,
