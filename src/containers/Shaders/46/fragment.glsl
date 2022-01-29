@@ -1,3 +1,4 @@
+// Inspiration : https://www.youtube.com/watch?v=vlD_KOrzGDc
 uniform float uTime;
 uniform vec2 uPlaneRes;
 uniform vec2 uCanvasRes;
