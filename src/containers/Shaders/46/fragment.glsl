@@ -154,6 +154,12 @@ vec4 Smiley(vec2 uv){
     vec2 m;
     m.x = uMouse.x  / uCanvasRes.x;
     m.y = (uCanvasRes.y -  uMouse.y)  / uCanvasRes.y;
+  
+
+    //Disort uv 
+    uv -= vec2(m - 0.5) * (0.25 - dot(uv, uv));
+
+    //Move the center
     m.x -= 0.5;
 
     float smile = clamp(m.y, 0.0, 1.0);
