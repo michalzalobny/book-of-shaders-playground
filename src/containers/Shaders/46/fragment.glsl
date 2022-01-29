@@ -41,7 +41,7 @@ vec4 Eye(vec2 uv, float side, vec2 m, float smile){
     float irisMask = S(.28, .25, d);
     col.rgb = mix(col.rgb, irisCol.rgb, irisMask);
     d = length(uv - m * 0.25);
-    float pupileSize = mix(.3, .12, smile);
+    float pupileSize = mix(.35, .15, smile);
     float pupilMask = S(pupileSize, pupileSize * 0.86, d);
     pupilMask *= irisMask;
     col.rgb = mix(col.rgb, vec3(0.), pupilMask);
@@ -100,14 +100,15 @@ vec4 Mouth(vec2 uv, float smile){
     uv.y *= 1.5;
     uv.y -= uv.x * uv.x * 2.0 * smile;
     uv.x *= mix(2.5 , 1.,smile);
-  
-    
-    float d = length(uv);
 
+  
+
+    vec2 tUv = uv;
+    float d = length(uv);
     col.a = S(.5, .48, d);
 
     vec3 toothCol = vec3(1.) * S(.6, .35 ,d);
-    float td = length(uv - vec2(0., 0.6));
+    float td = length(tUv - vec2(0., 0.6));
     col.rgb = mix(col.rgb, toothCol, S(.4, .37,td));
 
     td = length(uv + vec2(0.,0.5));
@@ -148,11 +149,11 @@ vec4 Head(vec2 uv){
 
 vec4 Smiley(vec2 uv){
     vec2 m;
-    m.x = (uMouse.x - (uCanvasRes.x - uPlaneRes.x) * 0.5) / uPlaneRes.x;
-    m.y = ((uCanvasRes.y -  uMouse.y) - (uCanvasRes.y - uPlaneRes.y) * 0.5) / uPlaneRes.y;
-    m-=0.5;
+    m.x = uMouse.x  / uCanvasRes.x;
+    m.y = (uCanvasRes.y -  uMouse.y)  / uCanvasRes.y;
+    m.x -= 0.5;
 
-    float smile = m.y;
+    float smile = clamp(m.y, 0.0, 1.0);
 
     vec4 col = vec4(0.0);
 
