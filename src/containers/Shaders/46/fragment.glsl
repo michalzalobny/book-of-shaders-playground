@@ -80,7 +80,7 @@ vec4 Brow(vec2 uv, float smile) {
     colMask *= S(.6, .9, browMask);
     vec4 browCol = mix(vec4(.0, .0, .0, 1.), vec4(1., .75, .5, 1.), colMask); 
 
-    uv.y += .15 - offs;
+    uv.y += .15 - offs * 0.75;
     blur += mix(.0, .1, smile);
     d1 = length(uv);
     s1 = S(.45, .45 - blur, d1);
