@@ -14,6 +14,8 @@ void main()
     //Fresnel computation
     vec3 viewDirection = normalize(modelPosition.xyz - cameraPosition);
     vec3 worldNormal = normalize(mat3(modelMatrix[0].xyz, modelMatrix[1].xyz, modelMatrix[2].xyz) * normal);
+    //Offsets the halo
+    // vec3 newNormal = mix(worldNormal, vec3(0.0, 1.0, 0.0), 0.5);
     float fresnel = uFresnelOffset + uFresnelScale * (1.0 + dot(viewDirection, worldNormal));
     fresnel = pow(fresnel, uFresnelPower);
 
