@@ -155,7 +155,6 @@ vec4 Smiley(vec2 uv){
     vec2 m;
     m.x = uMouse.x  / uCanvasRes.x;
     m.y = (uCanvasRes.y -  uMouse.y)  / uCanvasRes.y;
-  
 
     //Disort uv 
     uv -= vec2(m - 0.5) * (0.25 - dot(uv, uv)) * 0.5;
