@@ -158,7 +158,7 @@ vec4 Smiley(vec2 uv){
   
 
     //Disort uv 
-    uv -= vec2(m - 0.5) * (0.25 - dot(uv, uv));
+    uv -= vec2(m - 0.5) * (0.25 - dot(uv, uv)) * 0.5;
 
     //Move the center
     m.x -= 0.5;
