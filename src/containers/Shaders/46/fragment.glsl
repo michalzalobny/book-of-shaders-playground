@@ -66,7 +66,7 @@ vec4 Brow(vec2 uv){
 
     float colMask = remap01(.7, .8, y) * .75;
     colMask *= S(.6, .9, browMask);
-    vec4 browCol = mix(vec4(.4, .2, .2, 1.), vec4(1., .75, .5, 1.), colMask); 
+    vec4 browCol = mix(vec4(.0, .0, .0, 1.), vec4(1., .75, .5, 1.), colMask); 
 
     uv.y += .15;
     blur += .1;
@@ -105,7 +105,7 @@ vec4 Mouth(vec2 uv){
 }
 
 vec4 Head(vec2 uv){
-    vec4 col = vec4(0.9, 0.65, 0.1, 1.0);
+    vec4 col = vec4(0.219, 0.729, 0.09, .1);
 
     float d = length(uv);
 
@@ -117,7 +117,7 @@ vec4 Head(vec2 uv){
     col.rgb *= 1.0 - edgeShade * 0.5;
 
     //Outline
-    col.rgb = mix(col.rgb, vec3(0.6, 0.3, 0.1), S(.47, .48, d));
+    col.rgb = mix(col.rgb, vec3(0.2, 0.55, 0.11), S(.47, .48, d));
 
     float highlight = S(.41 , .405, d);
     highlight *= remap(.41, -.1, 0.75, 0., uv.y);
@@ -129,7 +129,7 @@ vec4 Head(vec2 uv){
     d = length( uv - vec2(.25,-0.2));
     float cheek = S(.2, .01, d) * 0.4;
     cheek *= S(.17, .16, d);
-    col.rgb = mix(col.rgb, vec3(1., .1, .1), cheek);
+    col.rgb = mix(col.rgb, vec3(0.2, 0.55, 0.11), cheek);
 
     return col;
 }
