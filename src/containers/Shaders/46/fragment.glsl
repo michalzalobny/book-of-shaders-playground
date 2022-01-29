@@ -64,7 +64,7 @@ vec4 Brow(vec2 uv, float smile) {
     float offs = mix(.15, 0., smile);
     uv.y += offs;
     float y = uv.y;
-    uv.y += uv.x * .8 - .3;
+    uv.y += uv.x * mix(0.5 , .8 ,smile) - .3;
     uv.x -= .1;
     uv -= .5;
     vec4 col = vec4(0.);
@@ -78,7 +78,7 @@ vec4 Brow(vec2 uv, float smile) {
 
     float colMask = remap01(.7, .8, y) * .75;
     colMask *= S(.6, .9, browMask);
-    vec4 browCol = mix(vec4(.0, .0, .0, 1.), vec4(1., .75, .5, 1.), colMask); 
+    vec4 browCol = mix(vec4(.0, .0, .0, 1.), vec4(.4, .9, .0, 1.), colMask); 
 
     uv.y += .15 - offs * 0.75;
     blur += mix(.0, .1, smile);
