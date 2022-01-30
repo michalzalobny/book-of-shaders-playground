@@ -107,7 +107,7 @@ export const TilesRenderer = () => {
     {
       num: 44,
       imgSrc: img44.src,
-      isPro: true,
+      isPro: false,
       isMotion: true,
     },
     {
@@ -203,7 +203,7 @@ export const TilesRenderer = () => {
     {
       num: 28,
       imgSrc: img28.src,
-      isPro: true,
+      isPro: false,
       isMotion: true,
     },
     {
