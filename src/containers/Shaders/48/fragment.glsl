@@ -1,3 +1,6 @@
+//Simple 3D renderer in shader
+//Based on : https://www.youtube.com/watch?v=dKA5ZVALOhs
+
 uniform float uTime;
 uniform vec2 uPlaneRes;
 uniform vec2 uCanvasRes;
@@ -8,16 +11,41 @@ varying vec2 vUv;
 
 #define PI 3.14159265359
 
-float random(vec2 st)
-{
-    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+float DistLine(vec3 ro, vec3 rd, vec3 p){ //Calculates the distance between the point p and the direction of the ray
+    return length(cross(p - ro, rd)) / length(rd);
+}
+
+float DrawPoint (vec3 ro, vec3 rd, vec3 p){
+    float d = DistLine(ro, rd, p); //distance between a point and a ray direction shooted from camera
+    return d = smoothstep(0.06, 0.05, d);
 }
 
 void main()
 {
-    float r = (distance( vec2(vUv.x, (vUv.y -0.5) * 6.0 + 0.5), vec2(0.5)));
+    vec2 uv = vUv;
+    uv -= 0.5;
 
-    float color =  max(min(0.15 / r, 1.), 0.);
+    float zoom = 1.0;
+    vec3 ro = vec3(sin(uTime) * 4., 2.0, cos(uTime) * 4.); //ray origin (camera position)
+    vec3 lookAt = vec3(0.0); //center of a cube
+    vec3 f = normalize(lookAt - ro);//forward vector
+    vec3 r = normalize(cross(vec3(0.0, 1.0, 0.0), f));//right vector is the cross product of world UP vector and forward vector f
+    vec3 u = cross(f, r); //Camera up vector
 
-    gl_FragColor = vec4(vec3(color), 1.0);
+    vec3 c = ro + f*zoom;//center of the screen
+    vec3 i = c + uv.x * r + uv.y * u;//intersection point
+    vec3 rd = i - ro;
+
+    //Drawing 8 points
+    float d = 0.0;
+    d += DrawPoint(ro, rd, vec3(-0.5, 0.5, 0.5)); 
+    d += DrawPoint(ro, rd, vec3(0.5, 0.5, 0.5));
+    d += DrawPoint(ro, rd, vec3(0.5, -0.5, 0.5));
+    d += DrawPoint(ro, rd, vec3(-0.5, -0.5, 0.5));
+    d += DrawPoint(ro, rd, vec3(-0.5, 0.5, -0.5));
+    d += DrawPoint(ro, rd, vec3(0.5, 0.5, -0.5));
+    d += DrawPoint(ro, rd, vec3(0.5, -0.5, -0.5));
+    d += DrawPoint(ro, rd, vec3(-0.5, -0.5, -0.5));
+
+    gl_FragColor = vec4(vec3(d), 1.0);
 }
