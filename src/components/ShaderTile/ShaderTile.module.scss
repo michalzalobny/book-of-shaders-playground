@@ -110,4 +110,16 @@
     background: var(--purple);
     color: var(--white);
   }
+
+  &Gradient {
+    background: rgb(255, 0, 0);
+    background: rgb(255, 0, 0);
+    background: linear-gradient(
+      180deg,
+      rgb(255, 30, 30) 10%,
+      rgb(0, 190, 0) 50%,
+      rgba(30, 30, 255, 1) 90%
+    );
+    color: var(--white);
+  }
 }

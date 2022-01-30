@@ -20,6 +20,7 @@ export interface Tile {
   isPro?: boolean;
   imgSrc: string;
   isMotion?: boolean;
+  isSpatial?: boolean;
 }
 
 export interface Size {

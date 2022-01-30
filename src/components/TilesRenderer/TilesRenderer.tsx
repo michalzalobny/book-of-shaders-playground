@@ -84,11 +84,13 @@ export const TilesRenderer = () => {
       num: 48,
       imgSrc: img48.src,
       isMotion: true,
+      isSpatial: true,
     },
     {
       num: 47,
       imgSrc: img47.src,
       isMotion: true,
+      isSpatial: true,
     },
     {
       num: 46,
@@ -306,15 +308,17 @@ export const TilesRenderer = () => {
   ];
 
   const router = useRouter();
-  type Mode = 'all' | 'pro' | 'motion';
+  type Mode = 'all' | 'pro' | 'spatial' | 'motion';
   const [mode, setMode] = useState<Mode>((router.query.filter as Mode) || 'all');
 
   const allBtnRef = useRef(null);
   const proBtnRef = useRef(null);
+  const spatialBtnRef = useRef(null);
   const motionBtnRef = useRef(null);
 
   const allBtnSize = useElementSize(allBtnRef);
   const proBtnSize = useElementSize(proBtnRef);
+  const spatialBtnSize = useElementSize(spatialBtnRef);
   const motionBtnSize = useElementSize(motionBtnRef);
 
   useEffect(() => {
@@ -350,6 +354,16 @@ export const TilesRenderer = () => {
           </button>
 
           <button
+            ref={spatialBtnRef}
+            onClick={() => {
+              router.replace('?filter=spatial');
+            }}
+            className={styles.filterBtn}
+          >
+            <span className={clsx(sharedStyles.text, sharedStyles.textBlack)}>3D</span>
+          </button>
+
+          <button
             ref={motionBtnRef}
             onClick={() => {
               router.replace('?filter=motion');
@@ -364,15 +378,23 @@ export const TilesRenderer = () => {
                 allBtnSize.size.isReady && proBtnSize.size.isReady && motionBtnSize.size.isReady
                   ? (mode === 'all' && allBtnSize.size.clientRect.width) ||
                     (mode === 'pro' && proBtnSize.size.clientRect.width) ||
+                    (mode === 'spatial' && spatialBtnSize.size.clientRect.width) ||
                     (mode === 'motion' && motionBtnSize.size.clientRect.width) ||
                     1
                   : 51.95,
 
               transform:
                 (mode === 'pro' && `translateX(${allBtnSize.size.clientRect.width + 10}px)`) ||
+                (mode === 'spatial' &&
+                  `translateX(${
+                    allBtnSize.size.clientRect.width + proBtnSize.size.clientRect.width + 20
+                  }px)`) ||
                 (mode === 'motion' &&
                   `translateX(${
-                    allBtnSize.size.clientRect.width + proBtnSize.size.clientRect.width + 10 + 10
+                    allBtnSize.size.clientRect.width +
+                    proBtnSize.size.clientRect.width +
+                    spatialBtnSize.size.clientRect.width +
+                    30
                   }px)`) ||
                 'translateX(0)',
             }}
@@ -394,11 +416,13 @@ export const TilesRenderer = () => {
             tile =>
               (mode === 'all' ||
                 (mode === 'pro' && tile.isPro) ||
+                (mode === 'spatial' && tile.isSpatial) ||
                 (mode === 'motion' && tile.isMotion)) && (
                 <ShaderTile
                   key={tile.num}
                   isMotion={tile.isMotion}
                   isPro={tile.isPro}
+                  isSpatial={tile.isSpatial}
                   elHref={`/shaders/${tile.num}`}
                   imageSrc={tile.imgSrc}
                   number={tile.num.toString()}

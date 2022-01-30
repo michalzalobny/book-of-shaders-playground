@@ -11,18 +11,21 @@ interface Props {
   number: string;
   elHref: string;
   isPro?: boolean;
+  isSpatial?: boolean;
   isMotion?: boolean;
 }
 
 export const ShaderTile = (props: Props) => {
-  const { isMotion, isPro, elHref, imageSrc, number } = props;
+  const { isSpatial, isMotion, isPro, elHref, imageSrc, number } = props;
 
   return (
     <>
       <LinkHandler elHref={elHref}>
         <div className={styles.wrapper}>
           <div className={styles.badgesWrapper}>
+            {isSpatial && <div className={clsx(styles.badge, styles.badgeGradient)}>3D</div>}
             {isPro && <div className={styles.badge}>Pro</div>}
+
             {isMotion && <div className={clsx(styles.badge, styles.badgePurple)}>Motion</div>}
           </div>
           <div className={styles.numberWrapper}>
