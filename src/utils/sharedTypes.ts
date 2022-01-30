@@ -17,9 +17,9 @@ export type ViewMode = 'fragment' | 'vertex' | 'none';
 
 export interface Tile {
   num: number;
-  isPro: boolean;
+  isPro?: boolean;
   imgSrc: string;
-  isMotion: boolean;
+  isMotion?: boolean;
 }
 
 export interface Size {

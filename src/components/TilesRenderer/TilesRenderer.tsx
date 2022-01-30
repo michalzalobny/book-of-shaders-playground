@@ -83,13 +83,11 @@ export const TilesRenderer = () => {
     {
       num: 48,
       imgSrc: img48.src,
-      isPro: false,
       isMotion: true,
     },
     {
       num: 47,
       imgSrc: img47.src,
-      isPro: false,
       isMotion: true,
     },
     {
@@ -107,7 +105,6 @@ export const TilesRenderer = () => {
     {
       num: 44,
       imgSrc: img44.src,
-      isPro: false,
       isMotion: true,
     },
     {
@@ -125,20 +122,14 @@ export const TilesRenderer = () => {
     {
       num: 41,
       imgSrc: img41.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 40,
       imgSrc: img40.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 39,
       imgSrc: img39.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 38,
@@ -149,37 +140,31 @@ export const TilesRenderer = () => {
     {
       num: 37,
       imgSrc: img37.src,
-      isPro: false,
       isMotion: true,
     },
     {
       num: 36,
       imgSrc: img36.src,
-      isPro: false,
       isMotion: true,
     },
     {
       num: 35,
       imgSrc: img35.src,
-      isPro: false,
       isMotion: true,
     },
     {
       num: 34,
       imgSrc: img34.src,
-      isPro: false,
       isMotion: true,
     },
     {
       num: 33,
       imgSrc: img33.src,
-      isPro: false,
       isMotion: true,
     },
     {
       num: 32,
       imgSrc: img32.src,
-      isPro: false,
       isMotion: true,
     },
     {
@@ -191,26 +176,19 @@ export const TilesRenderer = () => {
     {
       num: 30,
       imgSrc: img30.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 29,
       imgSrc: img29.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 28,
       imgSrc: img28.src,
-      isPro: false,
       isMotion: true,
     },
     {
       num: 27,
       imgSrc: img27.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 26,
@@ -221,151 +199,108 @@ export const TilesRenderer = () => {
     {
       num: 25,
       imgSrc: img25.src,
-      isPro: false,
       isMotion: true,
     },
     {
       num: 24,
       imgSrc: img24.src,
-      isPro: false,
       isMotion: true,
     },
     {
       num: 23,
       imgSrc: img23.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 22,
       imgSrc: img22.src,
-      isPro: false,
       isMotion: true,
     },
     {
       num: 21,
       imgSrc: img21.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 20,
       imgSrc: img20.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 19,
       imgSrc: img19.src,
-      isPro: false,
       isMotion: true,
     },
     {
       num: 18,
       imgSrc: img18.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 17,
       imgSrc: img17.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 16,
       imgSrc: img16.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 15,
       imgSrc: img15.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 14,
       imgSrc: img14.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 13,
       imgSrc: img13.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 12,
       imgSrc: img12.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 11,
       imgSrc: img11.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 10,
       imgSrc: img10.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 9,
       imgSrc: img9.src,
-      isPro: false,
       isMotion: true,
     },
     {
       num: 8,
       imgSrc: img8.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 7,
       imgSrc: img7.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 6,
       imgSrc: img6.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 5,
       imgSrc: img5.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 4,
       imgSrc: img4.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 3,
       imgSrc: img3.src,
-      isPro: false,
-      isMotion: false,
     },
     {
       num: 2,
       imgSrc: img2.src,
-      isPro: false,
       isMotion: true,
     },
     {
       num: 1,
       imgSrc: img1.src,
-      isPro: false,
       isMotion: true,
     },
   ];
