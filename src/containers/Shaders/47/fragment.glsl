@@ -1,3 +1,6 @@
+//Simple 3D renderer in shader
+//Based on : https://www.youtube.com/watch?v=dKA5ZVALOhs
+
 uniform float uTime;
 uniform vec2 uPlaneRes;
 uniform vec2 uCanvasRes;
@@ -8,16 +11,21 @@ varying vec2 vUv;
 
 #define PI 3.14159265359
 
-float random(vec2 st)
-{
-    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+float DistLine(vec3 ro, vec3 rd, vec3 p){ //Calculates the distance between the point p and the direction of the ray
+    return length(cross(p - ro, rd)) / length(rd);
 }
 
 void main()
 {
-    float r = (distance( vec2(vUv.x, (vUv.y -0.5) * 6.0 + 0.5), vec2(0.5)));
+    vec2 uv = vUv;
+    uv -= 0.5;
 
-    float color =  max(min(0.15 / r, 1.), 0.);
+    vec3 ro = vec3(0.0, 0.0, -2.0); //ray origin (camera position)
+    vec3 rd = vec3(uv.x, uv.y, 0.0) - ro; //ray direction is (intersection point - ray origin)
 
-    gl_FragColor = vec4(vec3(color), 1.0);
+    vec3 p = vec3(sin(uTime) * 0.45, 0.0,  cos(uTime) * 0.45); //Point we want to display
+    float d = DistLine(ro, rd, p); //distance between a point and a ray direction shooted from camera
+
+    d = smoothstep(0.03, 0.02, d);
+    gl_FragColor = vec4(vec3(d), 1.0);
 }
