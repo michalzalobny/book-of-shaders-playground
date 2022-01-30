@@ -17,6 +17,14 @@
   }
 }
 
+.filterText {
+  display: none;
+
+  @media screen and (min-width: 767px) {
+    display: initial;
+  }
+}
+
 .filterWrapper {
   margin-top: 2rem;
   display: flex;
@@ -50,5 +58,8 @@
   display: flex;
   align-items: center;
   position: relative;
-  margin-left: 10px;
+
+  @media screen and (min-width: 767px) {
+    margin-left: 10px;
+  }
 }

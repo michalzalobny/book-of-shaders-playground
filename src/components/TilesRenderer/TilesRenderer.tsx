@@ -337,7 +337,9 @@ export const TilesRenderer = () => {
   return (
     <>
       <div className={styles.filterWrapper}>
-        <p className={clsx(sharedStyles.text, sharedStyles.textBlack)}>filter: </p>
+        <p className={clsx(sharedStyles.text, sharedStyles.textBlack, styles.filterText)}>
+          filter:
+        </p>
 
         <div className={styles.buttonsWrapper}>
           <button
