@@ -1,5 +1,5 @@
-//Simple 3D renderer in shader
-//Based on : https://www.youtube.com/watch?v=dKA5ZVALOhs
+//Simple 3D renderer with a custom camera and look at point
+//Based on : https://www.youtube.com/watch?v=PBxuVlp7nuM
 
 uniform float uTime;
 uniform vec2 uPlaneRes;
