@@ -8,16 +8,24 @@ varying vec2 vUv;
 
 #define PI 3.14159265359
 
-float random(vec2 st)
-{
-    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
-}
+
 
 void main()
 {
-    float r = (distance( vec2(vUv.x, (vUv.y -0.5) * 6.0 + 0.5), vec2(0.5)));
+    vec2 uv = vUv;
+    uv -= 0.5;
 
-    float color =  max(min(0.15 / r, 1.), 0.);
+    vec2 st = vec2(atan(uv.x, uv.y), length(uv));
 
-    gl_FragColor = vec4(vec3(color), 1.0);
+    float speed = uTime * 0.5;
+    float skew = st.y * sin(speed);
+
+    uv = vec2(st.x / (2.0 * PI) + 0.5 * speed + skew, st.y);
+
+    float x = uv.x * 6.0;
+    float m = min(fract(x), fract(1.0 - x));
+
+    float c = smoothstep(0.0, 0.05, m * 0.6 + 0.2  -uv.y);
+
+    gl_FragColor = vec4(vec3(c), 1.0);
 }
