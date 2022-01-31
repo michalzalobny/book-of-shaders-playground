@@ -58,6 +58,8 @@ float GetLight (vec3 p) {
     //distance is less than the distance between points it means something was standing on their way
     //We add n * SURF_DIST * 2.0 otherwise the RayMarch loop breaks right after it starts because previously we have found the surface nearby
     float d = RayMarch(p + n * SURF_DIST * 2.0, l); 
+    //If the distance of the marched ray is lower than the distance of a distance between point and light source
+    //It means that it should be a shadow (because there is something between light source and point w ray march)
     if(d<length(lightPos - p)) dif *= .1; //Shadow is 10% of an actual light
     return dif;
 }
