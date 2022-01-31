@@ -15,12 +15,13 @@ void main()
     vec2 uv = vUv;
     uv -= 0.5;
 
+    //atan2 (of two components, x and y) returns the single value between -PI and PI
     vec2 st = vec2(atan(uv.x, uv.y), length(uv));
 
-    float speed = uTime * 0.5;
+    float speed = uTime * 0.5  * 0.6;
     float skew = st.y * sin(speed);
 
-    uv = vec2(st.x / (2.0 * PI) + 0.5 * speed + skew, st.y);
+    uv = vec2(st.x / (2.0 * PI) + speed + skew, st.y);
 
     float x = uv.x * 6.0;
     float m = min(fract(x), fract(1.0 - x));
