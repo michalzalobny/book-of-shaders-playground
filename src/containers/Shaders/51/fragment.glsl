@@ -1,3 +1,5 @@
+// Based on the art of code "The drive Home" video : https://www.youtube.com/watch?v=ewu5XrPRgxI
+
 uniform float uTime;
 uniform vec2 uPlaneRes;
 uniform vec2 uCanvasRes;
