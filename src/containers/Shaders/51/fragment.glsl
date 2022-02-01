@@ -111,7 +111,7 @@ vec3 HeadLights (ray r, float t) {
         float ti = fract(t + i);
         float z = 100.0 - ti * 100.0;
         float fade = ti * ti * ti * ti * ti; //ti* ti* ti... smooths the curve, it still goes from 0 to 1 but in smoother fashion
-        float focus = S(0.9, 1.0, ti);
+        float focus = S(0.8, 1.0, ti);
         float size = mix(0.05, 0.03, focus);
 
         //Create two headlights (using 2 Bokeh for each for extra rectangular shape of headlight effect)
