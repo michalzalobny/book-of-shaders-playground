@@ -13,6 +13,14 @@ varying vec2 vUv;
 
 struct ray { vec3 o, d; };
 
+float N(float t){
+    return fract(sin(t * 3456.0) * 6547.0);
+}
+
+vec4 N14(float t){ //Its name 14 becuase it takes 1 value and outputs 4
+    return fract(sin(t * vec4(123.0, 1024.0, 3456.0, 9564.0)) * vec4(6547.0, 345.0, 8799.0, 1564.0));
+}
+
 ray GetRay( vec2 uv, vec3 camPos, vec3 lookat, float zoom) {
     ray a;
     a.o = camPos;
@@ -47,9 +55,7 @@ float Bokeh (ray r, vec3 p, float size, float blur){
     return c;
 }
 
-float N(float t){
-    return fract(sin(t * 3456.0) * 6547.0);
-}
+
 
 vec3 TailLights (ray r, float t) {
     float w1 = 0.25;//Half the width of the car
@@ -125,6 +131,29 @@ vec3 HeadLights (ray r, float t) {
     return vec3(0.9, 0.9, 1.0) * m;
 }
 
+vec3 EnvLights (ray r, float t){
+    float side = step(r.d.x, 0.0); //If x is positive the side is 1.0
+    r.d.x = abs(r.d.x);  //Whenever the X ray value is negative make it positive
+    vec3 c = vec3(0.0);
+    float s = 1.0 / 10.0; //0.1
+    for(float i = 0.0; i < 1.0; i +=s){
+        float ti = fract(t + i + side * s *  0.5);
+
+        vec4 n = N14(i + side * 100.0);
+        float fade = ti * ti * ti;
+        float occlusion = sin(ti * 2.0 * PI * 10.0 * i) * 0.5 + 0.5;
+        fade = occlusion;
+        float x = mix(2.5, 10.0, n.x);
+        float y = mix(0.1, 1.5, n.y);
+
+        vec3 p = vec3(x , y, 50.0 - ti * 50.0);
+        vec3 col = n.wzy;
+        c += Bokeh(r, p, 0.05, 0.1) * fade * col * 0.6; 
+    }
+
+    return c;
+}
+
 vec3 StreetLights (ray r, float t){
     float side = step(r.d.x, 0.0); //If x is positive the side is 1.0
     r.d.x = abs(r.d.x);  //Whenever the X ray value is negative make it positive
@@ -156,11 +185,12 @@ void main()
 
     ray r = GetRay(uv, camPos, lookat, 2.0);
     
-    float t = uTime * 0.1;
+    float t = uTime * 0.05;
     vec3 col = StreetLights(r, t);
     col += HeadLights(r, t);
     col += TailLights(r, t);
-
+    col += EnvLights(r, t);
+    col += (r.d.y + 0.25) * vec3(0.2, 0.1, 0.5); //Add sky
     
     gl_FragColor = vec4(col, 1.0);
 }
