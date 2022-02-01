@@ -51,15 +51,57 @@ float N(float t){
     return fract(sin(t * 3456.0) * 6547.0);
 }
 
+vec3 TailLights (ray r, float t) {
+    float w1 = 0.25;//Half the width of the car
+    float w2 = w1 * 1.2;
+    float m = 0.0; //mask
+    float s = 1.0 / 15.0; //0.1
+    t *= 0.25;    
+
+    for(float i = 0.0; i < 1.0; i +=s){
+        float n = N(i); //value from 0 to 1
+        if( n > 0.5) continue; //continue will jump back at the beggining and skip the rest of the code in given loop
+
+        //n goes from 0 to 0.5 here because of knock out
+        float lane = step(0.25, n); //0 for left lane and 1.0 for right lane
+        float ti = fract(t + i);
+        float z = 100.0 - ti * 100.0;
+        float fade = ti * ti * ti * ti * ti; //ti* ti* ti... smooths the curve, it still goes from 0 to 1 but in smoother fashion
+        float focus = S(0.9, 1.0, ti);
+        float size = mix(0.05, 0.03, focus);
+
+        float laneShift = S(1.0, 0.96, ti);
+        float x = 1.5 - lane * laneShift;
+
+        float blink = step(0.0, sin(t*1000.0)) * 7.0 * lane * step(0.96, ti); // *lane so the cars on the right lane won't have the blinkers
+
+        //Create two headlights (using 2 Bokeh for each for extra rectangular shape of headlight effect)
+        m += Bokeh(r, vec3(x - w1 , 0.15, z), size, 0.1) * fade; 
+        m += Bokeh(r, vec3(x + w1 , 0.15, z), size, 0.1) * fade; 
+
+        m += Bokeh(r, vec3(x - w2 , 0.15, z), size, 0.1) * fade; 
+        m += Bokeh(r, vec3(x + w2 , 0.15, z), size, 0.1) * fade * (1.0 + blink);
+
+        //Add road reflections
+        float ref = 0.0;
+        ref += Bokeh(r, vec3(x - w2 , -0.15, z), size * 2.0, 1.0) * fade; 
+        ref += Bokeh(r, vec3(x + w2 , -0.15, z), size * 2.0, 1.0) * fade * (1.0 + blink * 0.1);
+        m += ref * focus; //only show reflection when in focus
+    }
+
+    return vec3(1.0, 0.1, 0.03) * m;
+}
+
 vec3 HeadLights (ray r, float t) {
     float w1 = 0.25;//Half the width of the car
     float w2 = w1 * 1.2;
     float m = 0.0; //mask
     float s = 1.0 / 30.0; //0.1
+    t *= 2.0;
 
     for(float i = 0.0; i < 1.0; i +=s){
         float n = N(i); //will knock out random car from screen
-        if( n > .05) continue; //continue will jump back at the beggining and skip the rest of the code in given loop
+        if( n > 0.1) continue; //continue will jump back at the beggining and skip the rest of the code in given loop
         float ti = fract(t + i);
         float z = 100.0 - ti * 100.0;
         float fade = ti * ti * ti * ti * ti; //ti* ti* ti... smooths the curve, it still goes from 0 to 1 but in smoother fashion
@@ -109,14 +151,15 @@ void main()
     //Move the center
     m.x -= 0.5;
     
-    vec3 camPos = vec3(0.0, 0.2, 0.0);
-    vec3 lookat = vec3(0.0, 0.2, 1.0);
+    vec3 camPos = vec3(0.5, 0.2, 0.0);
+    vec3 lookat = vec3(0.5, 0.2, 1.0);
 
     ray r = GetRay(uv, camPos, lookat, 2.0);
     
     float t = uTime * 0.1;
     vec3 col = StreetLights(r, t);
     col += HeadLights(r, t);
+    col += TailLights(r, t);
 
     
     gl_FragColor = vec4(col, 1.0);
