@@ -168,6 +168,38 @@ vec3 StreetLights (ray r, float t){
     return vec3(1.0, 0.7, 0.1) * m;
 }
 
+vec2 Rain(vec2 uv, float t){
+    t *= 40.0;
+    vec2 a = vec2(3.0, 1.0);//aspect ratio
+    vec2 st = uv * a;
+    vec2 id = floor(st);
+    st.y += t * 0.22;
+    float n = fract(sin(id.x * 716.34) * 768.32);
+    st.y += n; //offsets by random number in the given field 
+    uv.y +=n;
+    id = floor(st); //recalculate id because of shifting
+    st = fract(st) - 0.5;
+    t += fract(sin(id.x * 76.34 + id.y * 1453.7) * 768.32) * 2.0 * PI; 
+
+    float y = -sin(t + sin(t + sin(t) * 0.5)) * 0.43;
+    vec2 p1 = vec2(0.0, y);
+
+    vec2 o1 = (st - p1)/a;
+    float d = length(o1);
+    float m1 = S(0.07, 0.0, d);
+
+    vec2 o2 = (fract(uv * a.x * vec2(1.0, 2.0)) - 0.5) /  vec2(1.0, 2.0);
+    d = length(o2);
+
+    float m2 = S(0.3 * (0.5 - st.y), 0.0, d) * S( -.1, .1, st.y - p1.y);
+
+    // if(st.x> .48 || st.y > .49) m1 = 1.0;
+    
+
+
+    return vec2(m1 * o1 * 30.0 + m2 * o2 * 10.0);
+}
+
 void main()
 {
     vec2 uv = vUv;
@@ -183,14 +215,23 @@ void main()
     vec3 camPos = vec3(0.5, 0.2, 0.0);
     vec3 lookat = vec3(0.5, 0.2, 1.0);
 
-    ray r = GetRay(uv, camPos, lookat, 2.0);
-    
     float t = uTime * 0.05;
+
+    vec2 rainDistort = Rain(uv * 5.0, t) * 0.5;
+    rainDistort += Rain(uv * 7.0, t) * 0.5;
+
+
+    //Distort the view a little
+    uv.x += sin(uv.y * 70.0) * 0.005;
+    uv.y += sin(uv.x * 170.0) * 0.002;
+
+    ray r = GetRay(uv - rainDistort * 0.4, camPos, lookat, 2.0);
+    
     vec3 col = StreetLights(r, t);
     col += HeadLights(r, t);
     col += TailLights(r, t);
     col += EnvLights(r, t);
     col += (r.d.y + 0.25) * vec3(0.2, 0.1, 0.5); //Add sky
-    
+
     gl_FragColor = vec4(col, 1.0);
 }
