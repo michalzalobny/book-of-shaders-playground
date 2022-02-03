@@ -61,10 +61,10 @@ vec3 TailLights (ray r, float t) {
     float w1 = 0.25;//Half the width of the car
     float w2 = w1 * 1.2;
     float m = 0.0; //mask
-    float s = 1.0 / 15.0; //0.1
     t *= 0.25;    
 
-    for(float i = 0.0; i < 1.0; i +=s){
+    //it will loop 16 times
+    for(float i = 0.0; i < 1.0; i +=0.0625){
         float n = N(i); //value from 0 to 1
         if( n > 0.5) continue; //continue will jump back at the beggining and skip the rest of the code in given loop
 
@@ -102,10 +102,10 @@ vec3 HeadLights (ray r, float t) {
     float w1 = 0.25;//Half the width of the car
     float w2 = w1 * 1.2;
     float m = 0.0; //mask
-    float s = 1.0 / 30.0; //0.1
     t *= 2.0;
 
-    for(float i = 0.0; i < 1.0; i +=s){
+    //it will loop 32 times
+    for(float i = 0.0; i < 1.0; i +=0.03125){
         float n = N(i); //will knock out random car from screen
         if( n > 0.1) continue; //continue will jump back at the beggining and skip the rest of the code in given loop
         float ti = fract(t + i);
@@ -135,9 +135,8 @@ vec3 EnvLights (ray r, float t){
     float side = step(r.d.x, 0.0); //If x is positive the side is 1.0
     r.d.x = abs(r.d.x);  //Whenever the X ray value is negative make it positive
     vec3 c = vec3(0.0);
-    float s = 1.0 / 10.0; //0.1
-    for(float i = 0.0; i < 1.0; i +=s){
-        float ti = fract(t + i + side * s *  0.5);
+    for(float i = 0.0; i < 1.0; i +=0.1){
+        float ti = fract(t + i + side * 0.1 *  0.5);
 
         vec4 n = N14(i + side * 100.0);
         float fade = ti * ti * ti;
@@ -158,9 +157,9 @@ vec3 StreetLights (ray r, float t){
     float side = step(r.d.x, 0.0); //If x is positive the side is 1.0
     r.d.x = abs(r.d.x);  //Whenever the X ray value is negative make it positive
     float m = 0.0; //mask
-    float s = 1.0 / 10.0; //0.1
-    for(float i = 0.0; i < 1.0; i +=s){
-        float ti = fract(t + i + side * s *  0.5);
+    //it will loop 10 times
+    for(float i = 0.0; i < 1.0; i +=0.1){
+        float ti = fract(t + i + side * 0.1 *  0.5);
         vec3 p = vec3(2.0 , 2.0, 100.0 - ti * 100.0);
         m += Bokeh(r, p, 0.05, 0.1) * ti * ti * ti; //ti* ti*ti smooths the curve, it still goes from 0 to 1 but in smoother fashion
     }
