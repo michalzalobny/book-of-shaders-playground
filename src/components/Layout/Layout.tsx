@@ -53,7 +53,7 @@ export const Layout = (props: Props) => {
           </LinkHandler>
         </div>
       )}
-      {isReady && children}
+      {children}
     </>
   );
 };
