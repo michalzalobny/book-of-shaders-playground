@@ -1,5 +1,5 @@
 {
-  "name": "myapp",
+  "name": "app",
   "private": true,
   "scripts": {
     "dev": "next dev",
