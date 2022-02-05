@@ -99,10 +99,10 @@ void main()
     uv -= 0.5;
     float gradient = uv.y;
     float m = 0.0;
-    float t = (uTime + 125.0) * 0.1;
+    float t = (uTime + 145.0) * 0.1;
 
-    float s=  sin(t);
-    float c = cos(t);
+    float s=  sin(t + 213.23);
+    float c = cos(t + 213.23);
     mat2 rot = mat2(c, -s, s, c);
 
     uv *= rot;
