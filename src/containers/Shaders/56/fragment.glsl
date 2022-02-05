@@ -22,7 +22,8 @@ float DistLine(vec2 p, vec2 a, vec2 b){
 float Line(vec2 p, vec2 a, vec2 b){
     float d = DistLine(p, a, b);
     float m = S(0.03, 0.01, d);
-    m*= S(1.2, 0.8, length(a-b)); //Fade out the line if its too far away
+    float d2 = length(a-b);
+    m*= S(1.2, 0.8, d2); //Fade out the line if its too far away
     return m;
 }
 
@@ -49,12 +50,8 @@ vec2 GetPos(vec2 id, vec2 offset){
     return offset + sin(n) * 0.5 * 0.7;
 }
 
-void main()
-{
-    vec2 uv = vUv;  
+float Layer(vec2 uv){
     float m = 0.0;
-    uv*=5.0;
-
     vec2 gv = fract(uv) - 0.5; //grid uv - It will go from -0.5 to 0.5
     vec2 id = floor(uv);
 
@@ -69,13 +66,15 @@ void main()
     }
 
 
-    float t = uTime * 4.0;
+    float t = uTime * 5.0;
     for(int i = 0; i < 9; i++){
         m+= Line(gv, p[4], p[i]); //p[4] is the middle cell we are drawing lines from
 
-        vec2 j = (p[i] - gv) * 20.0;
+        vec2 j = (p[i] - gv) * 15.0;
         float sparkle = 1.0 / dot(j,j); //Its 1.0 over the length(j) * length(j) to make the fall of quicker
-        m+= sparkle * (sin(t + p[i].x *10.0 + p[i].y)*0.5 + 0.5);
+        float dim = S(0.0, 1.0, sparkle);
+        sparkle = mix(0.0, sparkle, dim);
+        m+= sparkle * (sin(t + p[i].x * 15.0) *0.5 + 0.5);
     }
 
     //We need to draw a few more lines to prevent from gaps
@@ -84,7 +83,42 @@ void main()
     m+= Line(gv, p[5], p[7]);
     m+= Line(gv, p[3], p[7]);
 
-    vec3 col = vec3(m);
+    return m;
+}
+
+void main()
+{
+    //mouse
+    vec2 mouse;
+    mouse.x = uMouse.x  / uCanvasRes.x;
+    mouse.y = (uCanvasRes.y -  uMouse.y)  / uCanvasRes.y;
+    //Move the center
+    mouse.x -= 0.5;
+
+    vec2 uv = vUv;  
+    uv -= 0.5;
+    float gradient = uv.y;
+    float m = 0.0;
+    float t = uTime * 0.1;
+
+    float s=  sin(t);
+    float c = cos(t);
+    mat2 rot = mat2(c, -s, s, c);
+
+    uv *= rot;
+    mouse *= rot;
+
+    for(float i = 0.0; i <= 1.0; i+= 0.25){
+        float z = fract(i+t);
+        float size = mix(8.0, 0.5, z);
+        float fade = S(0.0, 0.5, z) * S(1.0, 0.8, z);
+        m += Layer(uv * size + i*20.0 - mouse)* fade;
+    }
+
+    
+    vec3 base = sin(t * 5.0 * vec3(0.345, 0.456, 0.657)) * 0.4 + 0.6; //sin with vector3 generates vector3 with 3 sines
+    vec3 col = m * base;
+    col -= gradient * base;
 
     // if(gv.x > 0.46 || gv.y > 0.46) col = vec3(1.0, 0.0, 0.0); //grid for the debug
 
