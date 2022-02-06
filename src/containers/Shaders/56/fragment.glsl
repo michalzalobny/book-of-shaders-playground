@@ -101,8 +101,8 @@ void main()
     float m = 0.0;
     float t = (uTime + 145.0) * 0.1;
 
-    float s=  sin(t + 213.23);
-    float c = cos(t + 213.23);
+    float s=  sin(t + 213.21);
+    float c = cos(t + 213.21);
     mat2 rot = mat2(c, -s, s, c);
 
     uv *= rot;
