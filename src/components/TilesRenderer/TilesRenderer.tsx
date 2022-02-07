@@ -71,6 +71,7 @@ import img56 from 'assets/tileImages/56.jpg';
 import img57 from 'assets/tileImages/57.jpg';
 import img58 from 'assets/tileImages/58.jpg';
 import img59 from 'assets/tileImages/59.jpg';
+import img60 from 'assets/tileImages/60.jpg';
 
 const wrapperV: Variants = {
   initial: {
@@ -91,6 +92,13 @@ const wrapperV: Variants = {
 
 export const TilesRenderer = () => {
   const tiles: Tile[] = [
+    {
+      num: 60,
+      imgSrc: img60.src,
+      isMotion: true,
+      isSpatial: true,
+      isPro: true,
+    },
     {
       num: 59,
       imgSrc: img59.src,
