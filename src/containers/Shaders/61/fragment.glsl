@@ -187,7 +187,7 @@ void main()
         else if(mat==MAT_BARS)
             col *= vec3(0.458, 0.458, 0.458);
         else if(mat==MAT_BALL)
-            col *= vec3(0.019, 0.282, 1);
+            col *= vec3(0.964, 0.156, 0.156);
         else if(mat==MAT_LINE)
             col *= vec3(0.458, 0.458, 0.458);
     }
