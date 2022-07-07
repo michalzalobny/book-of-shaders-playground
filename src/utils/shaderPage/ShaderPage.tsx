@@ -73,7 +73,7 @@ export default function Page(props: ShaderPageProps) {
       <div className={styles.codeWrapper}>
         <LinkHandler
           isExternal
-          elHref={`https://github.com/javusScriptus/book-of-shaders-playground/tree/main/src/containers/Shaders/${shaderNumber}`}
+          elHref={`https://github.com/michalzalobny/book-of-shaders-playground/tree/main/src/containers/Shaders/${shaderNumber}`}
         >
           <span className={clsx(sharedStyles.text, sharedStyles.textUnderline)}>GitHub Repo</span>
         </LinkHandler>

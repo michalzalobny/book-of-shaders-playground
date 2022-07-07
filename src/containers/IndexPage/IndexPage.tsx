@@ -51,7 +51,7 @@ export default function IndexPage() {
               </span>
             </LinkHandler>
             <span className={styles.spacer} />
-            <LinkHandler isExternal elHref="https://github.com/javusScriptus">
+            <LinkHandler isExternal elHref="https://github.com/michalzalobny">
               <span
                 className={clsx(
                   sharedStyles.text,
@@ -60,7 +60,7 @@ export default function IndexPage() {
                   sharedStyles.textUnderline
                 )}
               >
-                javusScriptus
+                michalzalobny
               </span>
             </LinkHandler>
           </div>

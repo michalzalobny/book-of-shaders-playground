@@ -47,7 +47,7 @@ export const Layout = (props: Props) => {
         <div className={styles.codeWrapper}>
           <LinkHandler
             isExternal
-            elHref="https://github.com/javusScriptus/book-of-shaders-playground/tree/main/src/containers/Shaders"
+            elHref="https://github.com/michalzalobny/book-of-shaders-playground/tree/main/src/containers/Shaders"
           >
             <span className={clsx(sharedStyles.text, sharedStyles.textUnderline)}>GitHub Repo</span>
           </LinkHandler>
