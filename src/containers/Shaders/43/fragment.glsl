@@ -12,7 +12,6 @@ varying vec2 vUv;
 #define NUM_PARTICLES 40.0
 #define NUM_EXPLOSIONS 4.0
 
-
 //random hashing function that takes one float and returns two (vec2)
 vec2 Hash12(float t){
     float x = fract(sin(t*674.3)*453.2);
@@ -25,7 +24,6 @@ vec2 Hash12_Polar(float t){
     float d = fract(sin((t+a)*714.3)*263.2); //Distance from 0 to 1
     return vec2(sin(a) , cos(a)) * d; //Converting polar coords to cartesian coords system
 }
-
 
 float explosion (vec2 st, float t){
     float sparks = 0.0;
