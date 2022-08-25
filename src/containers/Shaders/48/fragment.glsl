@@ -1,4 +1,3 @@
-//Simple 3D renderer with a custom camera and look at point
 //Based on : https://www.youtube.com/watch?v=PBxuVlp7nuM
 
 uniform float uTime;
