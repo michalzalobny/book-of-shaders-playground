@@ -6,8 +6,8 @@ import vertexShader from './vertex.glsl';
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
-      fragmentShader,
       vertexShader,
+      fragmentShader,
     },
   };
 };
